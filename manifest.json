@@ -1,0 +1,10 @@
+{
+  "name": "Oxygen Calculator",
+  "short_name": "O2 Calc",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f8fb",
+  "theme_color": "#0b3b57",
+  "description": "Static oxygen calculator for transport planning and cylinder duration estimates.",
+  "icons": []
+}

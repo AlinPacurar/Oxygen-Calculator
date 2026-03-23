@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b3b57" />
+  <meta name="description" content="Browser-based oxygen calculator for transport planning, cylinder duration estimates, and quick validation checks." />
+  <title>Oxygen Calculator</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    :root{
+      --bg:#f5f8fb;--card:#ffffff;--ink:#123;--muted:#51606f;--line:#d9e2ea;--accent:#0b6c8e;
+      --accent-dark:#084f68;--accent-soft:#eaf5f9;--warn:#fff7eb;--warn-line:#f59e0b;--ok:#effaf3;
+      --ok-line:#7ed7a2;--bad:#fff1f2;--bad-line:#fda4af;--tab:#edf3f7;--shadow:0 10px 26px rgba(11,59,87,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#eef6fb 0%,#f7fafc 18%,#f5f8fb 100%);color:var(--ink)}
+    a{color:var(--accent)}
+    .app{max-width:1180px;margin:0 auto;padding:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:28px;display:grid;grid-template-columns:1.35fr .85fr;gap:20px;align-items:start}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-dark);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.01em}
+    h1{margin:12px 0 10px;font-size:clamp(30px,4.5vw,46px);line-height:1.04;letter-spacing:-.03em}
+    h2{margin:0 0 12px;font-size:24px;letter-spacing:-.02em}
+    h3{margin:0 0 10px;font-size:18px}
+    p{margin:0 0 10px;line-height:1.55}
+    .muted{color:var(--muted)}
+    .lede{font-size:17px;max-width:64ch}
+    .meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+    .tile{padding:16px;border:1px solid var(--line);border-radius:18px;background:#fbfdff}
+    .tile strong{display:block;margin-bottom:6px}
+    .warning{margin-top:18px;padding:18px;border-left:5px solid var(--warn-line);background:var(--warn);border-radius:18px}
+    .warning strong{display:block;margin-bottom:6px}
+    .hero-side{display:grid;gap:16px}
+    .quick-nav,.formula-box{padding:20px}
+    .quick-links{display:grid;gap:10px;margin-top:10px}
+    .quick-links a{text-decoration:none;font-weight:700;padding:12px 14px;background:var(--tab);border-radius:14px;border:1px solid var(--line)}
+    .formula-item{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fcfdff;margin-top:10px}
+    code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f1f5f9;padding:2px 6px;border-radius:8px}
+    .layout{display:grid;grid-template-columns:1fr 330px;gap:18px;margin-top:18px}
+    .toolbar{padding:10px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line)}
+    .tab-btn{border:none;background:var(--tab);padding:12px 16px;border-radius:999px;font-weight:800;cursor:pointer;color:#274052}
+    .tab-btn.active{background:var(--accent);color:white}
+    .panel{display:none;padding:20px}
+    .panel.active{display:block}
+    .input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .field label{display:block;font-weight:800;margin-bottom:6px}
+    .field small{display:block;margin-top:5px;color:var(--muted)}
+    input,select{width:100%;padding:12px 13px;border:1px solid #c9d5df;border-radius:13px;font-size:16px;background:white}
+    .result-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:18px}
+    .result-card{padding:18px;border-radius:18px;background:var(--ok);border:1px solid var(--ok-line)}
+    .result-label{font-size:14px;color:#29523f;text-transform:uppercase;letter-spacing:.04em;font-weight:800}
+    .big{font-size:38px;font-weight:900;letter-spacing:-.04em;margin:5px 0}
+    .plain-card{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fbfdff}
+    .validation{margin-top:14px;padding:12px 14px;border-radius:14px;font-size:14px;display:none}
+    .validation.bad{display:block;background:var(--bad);border:1px solid var(--bad-line)}
+    .validation.ok{display:block;background:#f8fafc;border:1px solid var(--line)}
+    .aside{display:grid;gap:18px}
+    .section{padding:20px}
+    .list{display:grid;gap:10px}
+    .row{padding:11px 0;border-bottom:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+    th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+    .pill{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;background:#e8eef4;font-size:12px;font-weight:800;color:#294357}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{border:none;background:var(--accent);color:white;padding:11px 15px;border-radius:12px;font-weight:800;cursor:pointer}
+    .btn.secondary{background:#34495a}
+    .btn.ghost{background:#eef3f7;color:#234}
+    .banner{padding:16px 18px;margin-top:18px;border-radius:18px;background:#f7fbfd;border:1px solid var(--line)}
+    .footer{padding:18px;margin:18px 0 10px;color:var(--muted);font-size:13px}
+    .test-pass{color:#166534;font-weight:800}.test-fail{color:#b91c1c;font-weight:800}
+    .mini{font-size:12px;color:var(--muted)}
+    @media (max-width:960px){
+      .hero,.layout,.result-wrap{grid-template-columns:1fr}
+      .meta,.input-grid{grid-template-columns:1fr}
+      .hero{padding:20px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="card hero">
+      <div>
+        <span class="eyebrow">Educational-style layout · GitHub Pages ready · Offline capable</span>
+        <h1>Oxygen Calculator</h1>
+        <p class="lede muted">A cleaner public-facing calculator inspired by the structure of modern online oxygen tools: prominent disclaimer, straightforward inputs, large result cards, formula transparency, cylinder support, and quick validation against the spreadsheet defaults.</p>
+        <div class="warning">
+          <strong>Clinical disclaimer</strong>
+          <p>This tool is intended as a planning and educational aid only. It is not a substitute for clinical judgement, local policy, device-specific instructions for use, or bedside verification. Always confirm ventilator settings, oxygen source availability, cylinder content, transport duration, reserve requirements, and contingency before clinical use.</p>
+        </div>
+        <div class="meta">
+          <div class="tile"><strong>Version</strong><span id="versionText">v1.1.0</span></div>
+          <div class="tile"><strong>Last validated</strong><span id="validatedText">2026-03-23</span></div>
+          <div class="tile"><strong>Reserve rule</strong><span>Final requirement doubled for contingency.</span></div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="installBtn" hidden>Install app</button>
+          <button class="btn secondary" id="resetBtn">Reset active tab</button>
+          <button class="btn ghost" id="copySummaryBtn">Copy result summary</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="card quick-nav">
+          <h3>Sections</h3>
+          <div class="quick-links">
+            <a href="#calculator">Patient calculators</a>
+            <a href="#duration">Cylinder duration</a>
+            <a href="#formulaSummary">Formula summary</a>
+            <a href="#validationPanel">Validation & tests</a>
+          </div>
+        </div>
+        <div class="card formula-box" id="formulaSummary">
+          <h3>Visible formula summary</h3>
+          <div class="formula-item"><strong>Ventilated</strong><br><code>((minute volume + 3) × FiO₂ × time) × 2</code></div>
+          <div class="formula-item"><strong>Spontaneous</strong><br><code>(flow × time) × 2</code></div>
+          <div class="formula-item"><strong>CPAP</strong><br><code>((minute volume + leak + 7) × FiO₂ × time) × 2</code></div>
+          <div class="formula-item"><strong>High flow</strong><br><code>(flow × FiO₂ × time) × 2</code></div>
+          <p class="mini" style="margin-top:12px">The additional <strong>+7 L/min</strong> term in CPAP is inferred from the spreadsheet’s visible default output and should be formally signed off against the source workbook before any real deployment.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout" id="calculator">
+      <div class="card">
+        <div class="toolbar" role="tablist" aria-label="Calculator sections">
+          <button class="tab-btn active" data-tab="vent">Ventilated</button>
+          <button class="tab-btn" data-tab="spont">Spontaneous</button>
+          <button class="tab-btn" data-tab="cpap">CPAP</button>
+          <button class="tab-btn" data-tab="hf">High Flow</button>
+          <button class="tab-btn" data-tab="duration">Cylinder Duration</button>
+        </div>
+
+        <div class="panel active" id="panel-vent">
+          <h2>Ventilated patient</h2>
+          <p class="muted">Use this when transfer oxygen consumption is driven by minute volume and FiO₂.</p>
+          <div class="input-grid">
+            <div class="field"><label for="ventMinuteVolume">Patient minute volume (L/min)</label><input id="ventMinuteVolume" type="number" min="0" step="0.1" value="20"></div>
+            <div class="field"><label for="ventFiO2">FiO₂</label><input id="ventFiO2" type="number" min="0.21" max="1" step="0.01" value="1"><small>Fractional input from 0.21 to 1.00.</small></div>
+            <div class="field"><label for="ventTime">Transfer time (mins)</label><input id="ventTime" type="number" min="1" step="1" value="60"></div>
+            <div class="field"><label for="ventCylinder">Cylinder size</label><select id="ventCylinder"></select></div>
+          </div>
+          <div class="result-wrap">
+            <div class="result-card"><div class="result-label">Required oxygen</div><div class="big" id="ventResult">0 L</div><div id="ventSummary" class="muted">—</div></div>
+            <div class="plain-card"><h3>Planning note</h3><p class="muted">This mode adds a fixed extra 3 L/min before contingency, matching the current browser rebuild.</p></div>
+          </div>
+          <div class="validation" id="ventValidation"></div>
+        </div>
+
+        <div class="panel" id="panel-spont">
+          <h2>Spontaneously breathing patient</h2>
+          <p class="muted">Useful for simple mask or cannula-based transfer planning.</p>
+          <div class="input-grid">
+            <div class="field"><label for="spontFlow">Flow (L/min)</label><input id="spontFlow" type="number" min="0" step="0.1" value="15"></div>
+            <div class="field"><label for="spontTime">Transfer time (mins)</label><input id="spontTime" type="number" min="1" step="1" value="60"></div>
+            <div class="field"><label for="spontCylinder">Cylinder size</label><select id="spontCylinder"></select></div>
+          </div>
+          <div class="result-wrap">
+            <div class="result-card"><div class="result-label">Required oxygen</div><div class="big" id="spontResult">0 L</div><div id="spontSummary" class="muted">—</div></div>
+            <div class="plain-card"><h3>Quick flow guide</h3><table><thead><tr><th>Device</th><th>Flow</th><th>Approx FiO₂</th></tr></thead><tbody><tr><td>Nasal cannula</td><td>1–5 L/min</td><td>0.22–0.35</td></tr><tr><td>Simple mask</td><td>5–10 L/min</td><td>0.35–0.60</td></tr><tr><td>Non-rebreathe</td><td>10–15 L/min</td><td>0.60–0.90</td></tr></tbody></table></div>
+          </div>
+          <div class="validation" id="spontValidation"></div>
+        </div>
+
+        <div class="panel" id="panel-cpap">
+          <h2>CPAP</h2>
+          <p class="muted">Uses minute volume, leak, FiO₂ and the current inferred workbook adjustment.</p>
+          <div class="input-grid">
+            <div class="field"><label for="cpapMinuteVolume">Patient minute volume (L/min)</label><input id="cpapMinuteVolume" type="number" min="0" step="0.1" value="10"></div>
+            <div class="field"><label for="cpapLeak">Leak (L/min)</label><input id="cpapLeak" type="number" min="0" step="0.1" value="15"></div>
+            <div class="field"><label for="cpapFiO2">FiO₂</label><input id="cpapFiO2" type="number" min="0.21" max="1" step="0.01" value="1"></div>
+            <div class="field"><label for="cpapTime">Transfer time (mins)</label><input id="cpapTime" type="number" min="1" step="1" value="60"></div>
+            <div class="field"><label for="cpapCylinder">Cylinder size</label><select id="cpapCylinder"></select></div>
+          </div>
+          <div class="result-wrap">
+            <div class="result-card"><div class="result-label">Required oxygen</div><div class="big" id="cpapResult">0 L</div><div id="cpapSummary" class="muted">—</div></div>
+            <div class="plain-card"><h3>Validation note</h3><p class="muted">The extra 7 L/min term is currently an inferred value needed to reproduce the spreadsheet default output of 3,840 L.</p></div>
+          </div>
+          <div class="validation" id="cpapValidation"></div>
+        </div>
+
+        <div class="panel" id="panel-hf">
+          <h2>High flow</h2>
+          <p class="muted">Best for planning very high consumption transfers and spotting early cylinder shortfall.</p>
+          <div class="input-grid">
+            <div class="field"><label for="hfFlow">Flow (L/min)</label><input id="hfFlow" type="number" min="0" step="0.1" value="60"></div>
+            <div class="field"><label for="hfFiO2">FiO₂</label><input id="hfFiO2" type="number" min="0.21" max="1" step="0.01" value="1"></div>
+            <div class="field"><label for="hfTime">Transfer time (mins)</label><input id="hfTime" type="number" min="1" step="1" value="90"></div>
+            <div class="field"><label for="hfCylinder">Cylinder size</label><select id="hfCylinder"></select></div>
+          </div>
+          <div class="result-wrap">
+            <div class="result-card"><div class="result-label">Required oxygen</div><div class="big" id="hfResult">0 L</div><div id="hfSummary" class="muted">—</div></div>
+            <div class="plain-card"><h3>High-consumption warning</h3><p class="muted">High flow can rapidly exceed the capacity of smaller cylinders. Check total source availability before transport starts.</p></div>
+          </div>
+          <div class="validation" id="hfValidation"></div>
+        </div>
+
+        <div class="panel" id="panel-duration">
+          <h2 id="duration">Cylinder duration</h2>
+          <p class="muted">Estimate how long one cylinder will last at a chosen oxygen flow.</p>
+          <div class="input-grid">
+            <div class="field"><label for="durationCylinder">Cylinder size</label><select id="durationCylinder"></select></div>
+            <div class="field"><label for="durationFlow">Flow draw (L/min)</label><input id="durationFlow" type="number" min="0.1" step="0.1" value="15"></div>
+          </div>
+          <div class="result-wrap">
+            <div class="result-card"><div class="result-label">Estimated duration</div><div class="big" id="durationResult">0 min</div><div id="durationSummary" class="muted">—</div></div>
+            <div class="plain-card"><h3>How this is calculated</h3><p class="muted">Nominal cylinder volume ÷ flow draw. Real-world performance may be lower depending on pressure, regulator, reserve policy, and unusable residual content.</p></div>
+          </div>
+          <div class="validation" id="durationValidation"></div>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <div class="card section" id="validationPanel">
+          <h2>Validation & test panel</h2>
+          <p class="muted">Known examples reproduced from the spreadsheet defaults currently visible in the workbook.</p>
+          <div id="tests" class="list"></div>
+          <div class="actions"><button class="btn ghost" id="rerunTestsBtn">Run tests again</button></div>
+        </div>
+
+        <div class="card section">
+          <h2>Cylinder selector</h2>
+          <p class="muted">Nominal cylinder capacities used by this build.</p>
+          <table><thead><tr><th>Size</th><th>Volume</th></tr></thead><tbody id="cylinderTable"></tbody></table>
+        </div>
+
+        <div class="card section">
+          <h2>Audit trail / change log</h2>
+          <div id="changelog"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card banner">
+      <strong>Deployment note</strong>
+      <p class="muted">This build is a static HTML app intended for GitHub Pages. Upload the files to a repository root, enable Pages for the <code>main</code> branch, and the calculator will be reachable from any device with a browser.</p>
+    </section>
+
+    <div class="footer">This browser build is designed to resemble a modern online calculator pattern, while remaining your own standalone implementation. Re-validate all formulas against the source spreadsheet before live use.</div>
+  </div>
+
+  <script>
+    const APP_META = {
+      version: '1.1.0',
+      lastValidated: '2026-03-23',
+      changelog: [
+        { version: '1.1.0', date: '2026-03-23', notes: [
+          'Refreshed the interface to a more public-facing educational calculator style with larger result cards and clearer sectioning.',
+          'Added a dedicated cylinder duration tab and copy-summary action.',
+          'Retained disclaimer, versioning, formula summary, tests, change log, mobile layout, validation, and PWA support.'
+        ]},
+        { version: '1.0.0', date: '2026-03-23', notes: [
+          'Initial browser rebuild from spreadsheet structure with tabbed calculations.',
+          'CPAP additional +7 L/min term inferred from visible workbook output and flagged for formal confirmation.'
+        ]}
+      ]
+    };
+
+    const CYLINDERS = [
+      { code: 'ZX', volume: 3040 },
+      { code: 'E', volume: 680 },
+      { code: 'CD', volume: 460 }
+    ];
+
+    const DEFAULTS = {
+      vent: { minuteVolume: 20, fio2: 1, time: 60, cylinder: 'ZX' },
+      spont: { flow: 15, time: 60, cylinder: 'ZX' },
+      cpap: { minuteVolume: 10, leak: 15, fio2: 1, time: 60, cylinder: 'ZX' },
+      hf: { flow: 60, fio2: 1, time: 90, cylinder: 'ZX' },
+      duration: { cylinder: 'ZX', flow: 15 }
+    };
+
+    const TESTS = [
+      { name: 'Ventilated default', expected: 2760, actual: () => calcVentilated(DEFAULTS.vent) },
+      { name: 'Spontaneous default', expected: 1800, actual: () => calcSpont(DEFAULTS.spont) },
+      { name: 'CPAP default', expected: 3840, actual: () => calcCpap(DEFAULTS.cpap) },
+      { name: 'High Flow default', expected: 10800, actual: () => calcHighFlow(DEFAULTS.hf) }
+    ];
+
+    function litres(v){ return `${Math.ceil(v).toLocaleString()} L`; }
+    function minutesLabel(v){ return `${Math.floor(v).toLocaleString()} min`; }
+    function getCylinder(code){ return CYLINDERS.find(c => c.code === code) || CYLINDERS[0]; }
+    function cylindersNeeded(total, code){
+      const c = getCylinder(code); const raw = total / c.volume;
+      return `${raw.toFixed(2)} ${c.code} cylinder(s) · ${Math.ceil(raw)} whole cylinder(s)`;
+    }
+    function calcVentilated({minuteVolume, fio2, time}){ return ((Number(minuteVolume)+3) * Number(fio2) * Number(time)) * 2; }
+    function calcSpont({flow, time}){ return Number(flow) * Number(time) * 2; }
+    function calcCpap({minuteVolume, leak, fio2, time}){ return ((Number(minuteVolume)+Number(leak)+7) * Number(fio2) * Number(time)) * 2; }
+    function calcHighFlow({flow, fio2, time}){ return Number(flow) * Number(fio2) * Number(time) * 2; }
+    function calcDuration({cylinder, flow}){ return getCylinder(cylinder).volume / Number(flow); }
+
+    function validate(fields){
+      for (const f of fields){
+        const n = Number(f.value);
+        if (!Number.isFinite(n)) return `Enter a numeric value for ${f.label}.`;
+        if (n < f.min) return `${f.label} must be at least ${f.min}.`;
+        if (typeof f.max === 'number' && n > f.max) return `${f.label} must be no more than ${f.max}.`;
+      }
+      return '';
+    }
+    function setValidation(el,msg){ el.className='validation '+(msg?'bad':'ok'); el.textContent = msg || 'Inputs look valid.'; }
+
+    function fillCylinderSelectors(){
+      ['ventCylinder','spontCylinder','cpapCylinder','hfCylinder','durationCylinder'].forEach(id=>{
+        document.getElementById(id).innerHTML = CYLINDERS.map(c=>`<option value="${c.code}">${c.code} · ${c.volume.toLocaleString()} L</option>`).join('');
+      });
+      cylinderTable.innerHTML = CYLINDERS.map(c=>`<tr><td>${c.code}</td><td>${c.volume.toLocaleString()} L</td></tr>`).join('');
+    }
+
+    function renderMeta(){
+      versionText.textContent = 'v' + APP_META.version;
+      validatedText.textContent = APP_META.lastValidated;
+      changelog.innerHTML = APP_META.changelog.map(item=>`
+        <div class="row">
+          <div><span class="pill">v${item.version}</span> <strong>${item.date}</strong></div>
+          <ul style="margin:8px 0 0 18px;padding:0">${item.notes.map(n=>`<li style="margin:6px 0">${n}</li>`).join('')}</ul>
+        </div>`).join('');
+    }
+
+    function renderVent(){
+      const msg = validate([
+        {label:'Patient minute volume', value:ventMinuteVolume.value, min:0},
+        {label:'FiO₂', value:ventFiO2.value, min:0.21, max:1},
+        {label:'Transfer time', value:ventTime.value, min:1}
+      ]);
+      setValidation(ventValidation,msg); if(msg) return;
+      const total = calcVentilated({minuteVolume:ventMinuteVolume.value,fio2:ventFiO2.value,time:ventTime.value});
+      ventResult.textContent = litres(total); ventSummary.textContent = cylindersNeeded(total, ventCylinder.value);
+    }
+    function renderSpont(){
+      const msg = validate([
+        {label:'Flow', value:spontFlow.value, min:0},
+        {label:'Transfer time', value:spontTime.value, min:1}
+      ]);
+      setValidation(spontValidation,msg); if(msg) return;
+      const total = calcSpont({flow:spontFlow.value,time:spontTime.value});
+      spontResult.textContent = litres(total); spontSummary.textContent = cylindersNeeded(total, spontCylinder.value);
+    }
+    function renderCpap(){
+      const msg = validate([
+        {label:'Patient minute volume', value:cpapMinuteVolume.value, min:0},
+        {label:'Leak', value:cpapLeak.value, min:0},
+        {label:'FiO₂', value:cpapFiO2.value, min:0.21, max:1},
+        {label:'Transfer time', value:cpapTime.value, min:1}
+      ]);
+      setValidation(cpapValidation,msg); if(msg) return;
+      const total = calcCpap({minuteVolume:cpapMinuteVolume.value, leak:cpapLeak.value, fio2:cpapFiO2.value, time:cpapTime.value});
+      cpapResult.textContent = litres(total); cpapSummary.textContent = cylindersNeeded(total, cpapCylinder.value);
+    }
+    function renderHf(){
+      const msg = validate([
+        {label:'Flow', value:hfFlow.value, min:0},
+        {label:'FiO₂', value:hfFiO2.value, min:0.21, max:1},
+        {label:'Transfer time', value:hfTime.value, min:1}
+      ]);
+      setValidation(hfValidation,msg); if(msg) return;
+      const total = calcHighFlow({flow:hfFlow.value, fio2:hfFiO2.value, time:hfTime.value});
+      hfResult.textContent = litres(total); hfSummary.textContent = cylindersNeeded(total, hfCylinder.value);
+    }
+    function renderDuration(){
+      const msg = validate([
+        {label:'Flow draw', value:durationFlow.value, min:0.1}
+      ]);
+      setValidation(durationValidation,msg); if(msg) return;
+      const mins = calcDuration({cylinder:durationCylinder.value, flow:durationFlow.value});
+      durationResult.textContent = minutesLabel(mins);
+      durationSummary.textContent = `${getCylinder(durationCylinder.value).code} cylinder at ${Number(durationFlow.value).toLocaleString()} L/min ≈ ${(mins/60).toFixed(2)} hours.`;
+    }
+
+    function runTests(){
+      tests.innerHTML = TESTS.map(t=>{
+        const actual = Math.round(t.actual());
+        const pass = actual === t.expected;
+        return `<div class="row"><strong>${t.name}</strong><br>Expected ${t.expected.toLocaleString()} L · Got ${actual.toLocaleString()} L<br><span class="${pass?'test-pass':'test-fail'}">${pass?'PASS':'FAIL'}</span></div>`;
+      }).join('');
+    }
+
+    function activateTab(name){
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab === name));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id === `panel-${name}`));
+      localStorage.setItem('oxygenCalc.activeTab', name);
+    }
+
+    function resetActiveTab(){
+      const tab = localStorage.getItem('oxygenCalc.activeTab') || 'vent';
+      if(tab==='vent'){ ventMinuteVolume.value=DEFAULTS.vent.minuteVolume; ventFiO2.value=DEFAULTS.vent.fio2; ventTime.value=DEFAULTS.vent.time; ventCylinder.value=DEFAULTS.vent.cylinder; renderVent(); }
+      else if(tab==='spont'){ spontFlow.value=DEFAULTS.spont.flow; spontTime.value=DEFAULTS.spont.time; spontCylinder.value=DEFAULTS.spont.cylinder; renderSpont(); }
+      else if(tab==='cpap'){ cpapMinuteVolume.value=DEFAULTS.cpap.minuteVolume; cpapLeak.value=DEFAULTS.cpap.leak; cpapFiO2.value=DEFAULTS.cpap.fio2; cpapTime.value=DEFAULTS.cpap.time; cpapCylinder.value=DEFAULTS.cpap.cylinder; renderCpap(); }
+      else if(tab==='hf'){ hfFlow.value=DEFAULTS.hf.flow; hfFiO2.value=DEFAULTS.hf.fio2; hfTime.value=DEFAULTS.hf.time; hfCylinder.value=DEFAULTS.hf.cylinder; renderHf(); }
+      else { durationCylinder.value=DEFAULTS.duration.cylinder; durationFlow.value=DEFAULTS.duration.flow; renderDuration(); }
+    }
+
+    function buildSummary(){
+      const active = localStorage.getItem('oxygenCalc.activeTab') || 'vent';
+      const map = {
+        vent: `Ventilated: ${ventResult.textContent} · ${ventSummary.textContent}`,
+        spont: `Spontaneous: ${spontResult.textContent} · ${spontSummary.textContent}`,
+        cpap: `CPAP: ${cpapResult.textContent} · ${cpapSummary.textContent}`,
+        hf: `High Flow: ${hfResult.textContent} · ${hfSummary.textContent}`,
+        duration: `Cylinder duration: ${durationResult.textContent} · ${durationSummary.textContent}`
+      };
+      return `${map[active]}\nVersion ${APP_META.version} · Validated ${APP_META.lastValidated}`;
+    }
+
+    fillCylinderSelectors(); renderMeta(); runTests();
+    renderVent(); renderSpont(); renderCpap(); renderHf(); renderDuration();
+    activateTab(localStorage.getItem('oxygenCalc.activeTab') || 'vent');
+
+    document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab)));
+    document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>{ renderVent(); renderSpont(); renderCpap(); renderHf(); renderDuration(); }));
+    rerunTestsBtn.addEventListener('click', runTests);
+    resetBtn.addEventListener('click', resetActiveTab);
+    copySummaryBtn.addEventListener('click', async ()=>{
+      const text = buildSummary();
+      try{ await navigator.clipboard.writeText(text); copySummaryBtn.textContent='Copied'; setTimeout(()=>copySummaryBtn.textContent='Copy result summary',1200); }
+      catch{ copySummaryBtn.textContent='Copy failed'; setTimeout(()=>copySummaryBtn.textContent='Copy result summary',1200); }
+    });
+
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; installBtn.hidden = false; });
+    installBtn?.addEventListener('click', async ()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; installBtn.hidden = true; });
+    if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+  </script>
+</body>
+</html>
