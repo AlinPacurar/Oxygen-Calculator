@@ -10,7 +10,7 @@ Static HTML app for GitHub Pages.
 5. Select the `main` branch and `/root` folder.
 6. Save.
 
-(url=https://alinpacurar.github.io/Oxygen-Calculator/)Oxygen Calculator(/url)
+https://alinpacurar.github.io/Oxygen-Calculator/
 
 ## Validation note
 The current build reproduces the visible workbook default outputs:
