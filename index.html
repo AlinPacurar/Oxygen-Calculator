@@ -328,25 +328,32 @@
 
     .cylinder-row{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:10px;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:8px;
       margin-top:12px;
+      align-items:end;
     }
 
-    .cyl-card{
+    .cyl-card,
+    .ref-card{
       width:100%;
-      border:2px solid var(--line);
-      border-radius:16px;
-      padding:10px 8px;
-      background:#fff;
-      cursor:pointer;
-      transition:.15s ease;
+      min-width:0;
+      border-radius:14px;
+      padding:8px 6px;
       display:flex;
       flex-direction:column;
       align-items:center;
+      justify-content:flex-end;
       text-align:center;
-      gap:6px;
-      min-width:0;
+      gap:5px;
+      overflow:hidden;
+    }
+
+    .cyl-card{
+      border:2px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      transition:.15s ease;
     }
 
     .cyl-card.active{
@@ -354,17 +361,24 @@
       background:#eff6ff;
     }
 
-    .cyl-graphic{
-      width:clamp(26px, 8vw, 48px);
-      height:clamp(78px, 20vw, 122px);
+    .ref-card{
+      border:2px dashed #cbd5e1;
+      background:#f8fafc;
+    }
+
+    .cyl-graphic,
+    .ref-graphic{
+      width:clamp(18px, 5vw, 34px);
+      height:clamp(64px, 16vw, 104px);
       display:flex;
       align-items:flex-end;
       justify-content:center;
       margin-bottom:2px;
+      flex-shrink:0;
     }
 
     .cyl-body{
-      width:clamp(14px, 4vw, 26px);
+      width:clamp(10px, 2.8vw, 18px);
       border-radius:18px 18px 14px 14px;
       position:relative;
       background:linear-gradient(180deg,#90a4b8 0%, #6f879d 45%, #4c6277 100%);
@@ -396,16 +410,91 @@
       border-radius:2px;
     }
 
+    .ref-human{
+      position:relative;
+      width:18px;
+      height:84px;
+      flex-shrink:0;
+    }
+
+    .ref-human::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#94a3b8;
+    }
+
+    .ref-human::after{
+      content:"";
+      position:absolute;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      width:6px;
+      height:36px;
+      background:#94a3b8;
+      border-radius:4px;
+    }
+
+    .ref-human .arm-left,
+    .ref-human .arm-right,
+    .ref-human .leg-left,
+    .ref-human .leg-right{
+      position:absolute;
+      background:#94a3b8;
+      border-radius:4px;
+      transform-origin:top center;
+    }
+
+    .ref-human .arm-left{
+      width:4px;
+      height:20px;
+      top:18px;
+      left:3px;
+      transform:rotate(28deg);
+    }
+
+    .ref-human .arm-right{
+      width:4px;
+      height:20px;
+      top:18px;
+      right:3px;
+      transform:rotate(-28deg);
+    }
+
+    .ref-human .leg-left{
+      width:4px;
+      height:24px;
+      top:46px;
+      left:6px;
+      transform:rotate(12deg);
+    }
+
+    .ref-human .leg-right{
+      width:4px;
+      height:24px;
+      top:46px;
+      right:6px;
+      transform:rotate(-12deg);
+    }
+
     .cyl-name{
       font-size:13px;
       font-weight:800;
       line-height:1.2;
+      word-break:break-word;
     }
 
     .cyl-size{
       font-size:12px;
       color:var(--muted);
       line-height:1.2;
+      word-break:break-word;
     }
 
     .mini-stats{
@@ -608,21 +697,51 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(3, minmax(82px, 1fr));
-        gap:8px;
+        grid-template-columns:repeat(4, minmax(68px, 1fr));
+        gap:6px;
       }
 
-      .cyl-card{
-        padding:8px 6px;
-        border-radius:14px;
+      .cyl-card,
+      .ref-card{
+        padding:6px 4px;
       }
 
       .cyl-name{
-        font-size:12px;
+        font-size:11px;
       }
 
       .cyl-size{
-        font-size:11px;
+        font-size:10px;
+      }
+
+      .ref-human{
+        width:14px;
+        height:64px;
+      }
+
+      .ref-human::before{
+        width:10px;
+        height:10px;
+      }
+
+      .ref-human::after{
+        top:12px;
+        width:5px;
+        height:28px;
+      }
+
+      .ref-human .arm-left,
+      .ref-human .arm-right{
+        width:3px;
+        height:16px;
+        top:16px;
+      }
+
+      .ref-human .leg-left,
+      .ref-human .leg-right{
+        width:3px;
+        height:18px;
+        top:38px;
       }
 
       .update-actions .btn{
@@ -666,17 +785,56 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(3, minmax(72px, 1fr));
-        gap:6px;
+        grid-template-columns:repeat(4, minmax(62px, 1fr));
+        gap:5px;
       }
 
-      .cyl-graphic{
-        width:22px;
-        height:72px;
+      .cyl-graphic,
+      .ref-graphic{
+        width:16px;
+        height:60px;
       }
 
       .cyl-body{
+        width:9px;
+      }
+
+      .cyl-name{
+        font-size:10px;
+      }
+
+      .cyl-size{
+        font-size:9px;
+      }
+
+      .ref-human{
         width:12px;
+        height:56px;
+      }
+
+      .ref-human::before{
+        width:8px;
+        height:8px;
+      }
+
+      .ref-human::after{
+        top:10px;
+        width:4px;
+        height:24px;
+      }
+
+      .ref-human .arm-left,
+      .ref-human .arm-right{
+        width:3px;
+        height:13px;
+        top:13px;
+      }
+
+      .ref-human .leg-left,
+      .ref-human .leg-right{
+        width:3px;
+        height:15px;
+        top:32px;
       }
 
       .mini{
@@ -1073,7 +1231,7 @@
     </div>
 
     <footer>
-      <div><strong>Version:</strong> 1.4.1</div>
+      <div><strong>Version:</strong> 1.4.2</div>
       <div><strong>Last Validated:</strong> 2026-03-23</div>
       <div>© 2026 ARCC KSS · Created by Alin Pacurar · All rights reserved</div>
     </footer>
@@ -1091,13 +1249,13 @@
   </div>
 
   <script>
-    const APP_VERSION = "1.4.1";
+    const APP_VERSION = "1.4.2";
     const VERSION_KEY = "arcc-kss-version";
 
     const cylinders = [
-      { id: "zx", name: "ZX", volume: 3040, height: 98 },
-      { id: "e",  name: "E",  volume: 680,  height: 72 },
-      { id: "cd", name: "CD", volume: 460,  height: 58 }
+      { id: "zx", name: "ZX", volume: 3040, height: 82 },
+      { id: "e",  name: "E",  volume: 680,  height: 62 },
+      { id: "cd", name: "CD", volume: 460,  height: 50 }
     ];
 
     const selectedCylinder = {
@@ -1223,9 +1381,28 @@
       return card;
     }
 
+    function makeReferenceCard(){
+      const card = document.createElement("div");
+      card.className = "ref-card";
+      card.innerHTML = `
+        <div class="ref-graphic">
+          <div class="ref-human">
+            <span class="arm-left"></span>
+            <span class="arm-right"></span>
+            <span class="leg-left"></span>
+            <span class="leg-right"></span>
+          </div>
+        </div>
+        <div class="cyl-name">Adult</div>
+        <div class="cyl-size">Size ref</div>
+      `;
+      return card;
+    }
+
     function renderCylinders(mode){
       const row = document.getElementById(`${mode}CylinderRow`);
       row.innerHTML = "";
+      row.appendChild(makeReferenceCard());
       cylinders.forEach(cyl => row.appendChild(makeCylinderCard(mode, cyl)));
     }
 
