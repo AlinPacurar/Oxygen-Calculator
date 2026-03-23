@@ -328,18 +328,18 @@
 
     .cylinder-row{
       display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
+      grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:8px;
       margin-top:12px;
       align-items:end;
     }
 
-    .cyl-card,
-    .ref-card{
+    .cyl-card{
       width:100%;
       min-width:0;
+      border:2px solid var(--line);
       border-radius:14px;
-      padding:8px 6px;
+      padding:10px 6px 8px;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -347,10 +347,6 @@
       text-align:center;
       gap:5px;
       overflow:hidden;
-    }
-
-    .cyl-card{
-      border:2px solid var(--line);
       background:#fff;
       cursor:pointer;
       transition:.15s ease;
@@ -361,15 +357,9 @@
       background:#eff6ff;
     }
 
-    .ref-card{
-      border:2px dashed #cbd5e1;
-      background:#f8fafc;
-    }
-
-    .cyl-graphic,
-    .ref-graphic{
-      width:clamp(18px, 5vw, 34px);
-      height:clamp(64px, 16vw, 104px);
+    .cyl-graphic{
+      width:clamp(16px, 4.6vw, 30px);
+      height:clamp(58px, 13vw, 94px);
       display:flex;
       align-items:flex-end;
       justify-content:center;
@@ -378,23 +368,24 @@
     }
 
     .cyl-body{
-      width:clamp(10px, 2.8vw, 18px);
-      border-radius:18px 18px 14px 14px;
+      width:clamp(8px, 2.1vw, 14px);
+      border-radius:16px 16px 12px 12px;
       position:relative;
       background:linear-gradient(180deg,#90a4b8 0%, #6f879d 45%, #4c6277 100%);
       box-shadow:
-        inset -4px 0 6px rgba(255,255,255,.22),
-        inset 5px 0 8px rgba(0,0,0,.12);
+        inset -3px 0 5px rgba(255,255,255,.22),
+        inset 4px 0 6px rgba(0,0,0,.12);
+      max-height:100%;
     }
 
     .cyl-body::before{
       content:"";
       position:absolute;
-      top:-10px;
+      top:-8px;
       left:50%;
       transform:translateX(-50%);
-      width:40%;
-      height:10px;
+      width:42%;
+      height:8px;
       background:#607286;
       border-radius:4px 4px 2px 2px;
     }
@@ -402,96 +393,23 @@
     .cyl-body::after{
       content:"";
       position:absolute;
-      top:-5px;
+      top:-4px;
       right:-1px;
       width:28%;
-      height:4px;
+      height:3px;
       background:#475569;
       border-radius:2px;
     }
 
-    .ref-human{
-      position:relative;
-      width:18px;
-      height:84px;
-      flex-shrink:0;
-    }
-
-    .ref-human::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:50%;
-      transform:translateX(-50%);
-      width:12px;
-      height:12px;
-      border-radius:50%;
-      background:#94a3b8;
-    }
-
-    .ref-human::after{
-      content:"";
-      position:absolute;
-      top:14px;
-      left:50%;
-      transform:translateX(-50%);
-      width:6px;
-      height:36px;
-      background:#94a3b8;
-      border-radius:4px;
-    }
-
-    .ref-human .arm-left,
-    .ref-human .arm-right,
-    .ref-human .leg-left,
-    .ref-human .leg-right{
-      position:absolute;
-      background:#94a3b8;
-      border-radius:4px;
-      transform-origin:top center;
-    }
-
-    .ref-human .arm-left{
-      width:4px;
-      height:20px;
-      top:18px;
-      left:3px;
-      transform:rotate(28deg);
-    }
-
-    .ref-human .arm-right{
-      width:4px;
-      height:20px;
-      top:18px;
-      right:3px;
-      transform:rotate(-28deg);
-    }
-
-    .ref-human .leg-left{
-      width:4px;
-      height:24px;
-      top:46px;
-      left:6px;
-      transform:rotate(12deg);
-    }
-
-    .ref-human .leg-right{
-      width:4px;
-      height:24px;
-      top:46px;
-      right:6px;
-      transform:rotate(-12deg);
-    }
-
     .cyl-name{
-      font-size:13px;
+      font-size:12px;
       font-weight:800;
       line-height:1.2;
       word-break:break-word;
     }
 
     .cyl-size{
-      font-size:12px;
+      font-size:11px;
       color:var(--muted);
       line-height:1.2;
       word-break:break-word;
@@ -697,13 +615,21 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(4, minmax(68px, 1fr));
+        grid-template-columns:repeat(3, minmax(70px, 1fr));
         gap:6px;
       }
 
-      .cyl-card,
-      .ref-card{
-        padding:6px 4px;
+      .cyl-card{
+        padding:8px 4px 7px;
+      }
+
+      .cyl-graphic{
+        width:18px;
+        height:62px;
+      }
+
+      .cyl-body{
+        width:9px;
       }
 
       .cyl-name{
@@ -712,36 +638,6 @@
 
       .cyl-size{
         font-size:10px;
-      }
-
-      .ref-human{
-        width:14px;
-        height:64px;
-      }
-
-      .ref-human::before{
-        width:10px;
-        height:10px;
-      }
-
-      .ref-human::after{
-        top:12px;
-        width:5px;
-        height:28px;
-      }
-
-      .ref-human .arm-left,
-      .ref-human .arm-right{
-        width:3px;
-        height:16px;
-        top:16px;
-      }
-
-      .ref-human .leg-left,
-      .ref-human .leg-right{
-        width:3px;
-        height:18px;
-        top:38px;
       }
 
       .update-actions .btn{
@@ -785,18 +681,21 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(4, minmax(62px, 1fr));
+        grid-template-columns:repeat(3, minmax(64px, 1fr));
         gap:5px;
       }
 
-      .cyl-graphic,
-      .ref-graphic{
+      .cyl-card{
+        padding:7px 3px 6px;
+      }
+
+      .cyl-graphic{
         width:16px;
-        height:60px;
+        height:56px;
       }
 
       .cyl-body{
-        width:9px;
+        width:8px;
       }
 
       .cyl-name{
@@ -805,36 +704,6 @@
 
       .cyl-size{
         font-size:9px;
-      }
-
-      .ref-human{
-        width:12px;
-        height:56px;
-      }
-
-      .ref-human::before{
-        width:8px;
-        height:8px;
-      }
-
-      .ref-human::after{
-        top:10px;
-        width:4px;
-        height:24px;
-      }
-
-      .ref-human .arm-left,
-      .ref-human .arm-right{
-        width:3px;
-        height:13px;
-        top:13px;
-      }
-
-      .ref-human .leg-left,
-      .ref-human .leg-right{
-        width:3px;
-        height:15px;
-        top:32px;
       }
 
       .mini{
@@ -1231,7 +1100,7 @@
     </div>
 
     <footer>
-      <div><strong>Version:</strong> 1.4.2</div>
+      <div><strong>Version:</strong> 1.4.3</div>
       <div><strong>Last Validated:</strong> 2026-03-23</div>
       <div>© 2026 ARCC KSS · Created by Alin Pacurar · All rights reserved</div>
     </footer>
@@ -1249,13 +1118,13 @@
   </div>
 
   <script>
-    const APP_VERSION = "1.4.2";
+    const APP_VERSION = "1.4.3";
     const VERSION_KEY = "arcc-kss-version";
 
     const cylinders = [
-      { id: "zx", name: "ZX", volume: 3040, height: 82 },
-      { id: "e",  name: "E",  volume: 680,  height: 62 },
-      { id: "cd", name: "CD", volume: 460,  height: 50 }
+      { id: "zx", name: "ZX", volume: 3040, height: 74 },
+      { id: "e",  name: "E",  volume: 680,  height: 56 },
+      { id: "cd", name: "CD", volume: 460,  height: 45 }
     ];
 
     const selectedCylinder = {
@@ -1344,6 +1213,17 @@
       return `${Math.round(mins)} mins`;
     }
 
+    function fmtDateTime() {
+      const now = new Date();
+      return now.toLocaleString("en-GB", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
     function clampNumber(value, min, max){
       if (Number.isNaN(value)) return null;
       if (value < min || value > max) return null;
@@ -1381,28 +1261,9 @@
       return card;
     }
 
-    function makeReferenceCard(){
-      const card = document.createElement("div");
-      card.className = "ref-card";
-      card.innerHTML = `
-        <div class="ref-graphic">
-          <div class="ref-human">
-            <span class="arm-left"></span>
-            <span class="arm-right"></span>
-            <span class="leg-left"></span>
-            <span class="leg-right"></span>
-          </div>
-        </div>
-        <div class="cyl-name">Adult</div>
-        <div class="cyl-size">Size ref</div>
-      `;
-      return card;
-    }
-
     function renderCylinders(mode){
       const row = document.getElementById(`${mode}CylinderRow`);
       row.innerHTML = "";
-      row.appendChild(makeReferenceCard());
       cylinders.forEach(cyl => row.appendChild(makeCylinderCard(mode, cyl)));
     }
 
@@ -1549,12 +1410,13 @@
     }
 
     document.getElementById("copySummaryBtn").addEventListener("click", async () => {
+      const stamp = fmtDateTime();
       const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab || "vent";
       const summaries = {
-        vent: `ARCC KSS Oxygen Calculator\nMode: Ventilated\nOxygen Required: ${document.getElementById("ventResult").textContent}\nCylinder: ${document.getElementById("ventCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("ventCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("ventCylinderDuration").textContent}`,
-        spont: `ARCC KSS Oxygen Calculator\nMode: Spontaneously Breathing\nOxygen Required: ${document.getElementById("spontResult").textContent}\nCylinder: ${document.getElementById("spontCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("spontCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("spontCylinderDuration").textContent}`,
-        cpap: `ARCC KSS Oxygen Calculator\nMode: CPAP\nOxygen Required: ${document.getElementById("cpapResult").textContent}\nCylinder: ${document.getElementById("cpapCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("cpapCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("cpapCylinderDuration").textContent}`,
-        hf: `ARCC KSS Oxygen Calculator\nMode: High Flow\nOxygen Required: ${document.getElementById("hfResult").textContent}\nCylinder: ${document.getElementById("hfCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("hfCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("hfCylinderDuration").textContent}`
+        vent: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Ventilated\nOxygen Required: ${document.getElementById("ventResult").textContent}\nCylinder: ${document.getElementById("ventCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("ventCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("ventCylinderDuration").textContent}`,
+        spont: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Spontaneously Breathing\nOxygen Required: ${document.getElementById("spontResult").textContent}\nCylinder: ${document.getElementById("spontCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("spontCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("spontCylinderDuration").textContent}`,
+        cpap: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: CPAP\nOxygen Required: ${document.getElementById("cpapResult").textContent}\nCylinder: ${document.getElementById("cpapCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("cpapCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("cpapCylinderDuration").textContent}`,
+        hf: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: High Flow\nOxygen Required: ${document.getElementById("hfResult").textContent}\nCylinder: ${document.getElementById("hfCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("hfCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("hfCylinderDuration").textContent}`
       };
 
       try{

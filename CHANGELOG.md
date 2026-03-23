@@ -1,3 +1,15 @@
+## [1.4.3] - 2026-03-23
+
+### Changed
+- Removed adult reference card from cylinder selector
+- Tightened cylinder sizing further for small-screen layouts
+- Adjusted cylinder card spacing and padding to prevent largest cylinder from clipping on mobile
+
+### Added
+- Copy Summary now includes current date and time
+
+### Notes
+- Mobile cylinder layout was simplified to focus only on selectable cylinders and reduce overflow risk.
 ## [1.4.2] - 2026-03-23
 
 ### Added
@@ -10,7 +22,6 @@
 
 ### Notes
 - Mobile layout adjusted to better fit narrow screens without cylinder overflow.
-
 ## [1.4] - 2026-03-23
 
 ### Added
