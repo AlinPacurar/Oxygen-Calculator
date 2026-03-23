@@ -10,8 +10,7 @@ Static HTML app for GitHub Pages.
 5. Select the `main` branch and `/root` folder.
 6. Save.
 
-Your site will publish at a URL similar to:
-`https://yourusername.github.io/your-repo-name/`
+(url=https://alinpacurar.github.io/Oxygen-Calculator/)Oxygen Calculator(/url)
 
 ## Validation note
 The current build reproduces the visible workbook default outputs:
