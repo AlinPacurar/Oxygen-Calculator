@@ -1,3 +1,16 @@
+## [1.4.2] - 2026-03-23
+
+### Added
+- Static adult size reference beside cylinder graphics
+
+### Changed
+- Narrowed cylinder cards for improved phone layout
+- Reduced cylinder graphic widths and heights for smaller screens
+- Improved cylinder grid fit within card padding on mobile devices
+
+### Notes
+- Mobile layout adjusted to better fit narrow screens without cylinder overflow.
+
 ## [1.4] - 2026-03-23
 
 ### Added
