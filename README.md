@@ -2,14 +2,6 @@
 
 Static HTML app for GitHub Pages.
 
-## Publish on GitHub Pages
-1. Create a new GitHub repository.
-2. Upload `index.html`, `manifest.json`, `sw.js`, and this `README.md` to the repo root.
-3. In GitHub, open **Settings → Pages**.
-4. Choose **Deploy from a branch**.
-5. Select the `main` branch and `/root` folder.
-6. Save.
-
 https://alinpacurar.github.io/Oxygen-Calculator/
 
 ## Validation note
