@@ -1,3 +1,15 @@
+## [1.4.4] - 2026-03-23
+
+### Added
+- HX cylinder option (2,300 L)
+
+### Changed
+- Cylinder order updated to ZX, HX, E, CD
+- Cylinder graphics rebalanced for desktop, tablet, and mobile layouts
+- Mobile and tablet grid sizing adjusted to keep all cylinders visible without clipping
+
+### Notes
+- HX cylinder is displayed visually between ZX and E to reflect approximate relative capacity.
 ## [1.4.3] - 2026-03-23
 
 ### Changed
