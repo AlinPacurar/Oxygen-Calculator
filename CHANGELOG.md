@@ -1,3 +1,9 @@
+## 1.4.6 - 2026-03-24
+- Cleaned up startup rendering by removing the duplicate cylinder redraw after load.
+- Changed FiO₂ inputs for Ventilated, CPAP, and High Flow from decimal fractions to dropdown percentages (21% to 100%).
+- Kept calculations unchanged internally by converting the selected percentage to a fraction for the formula.
+- Improved small-screen cylinder card responsiveness with a more readable 2-column layout on very narrow mobile widths.
+- Updated app version and service worker cache name to keep GitHub Pages/PWA refresh behaviour in sync.
 ## [1.4.5] - 2026-03-23
 
 ### Changed
