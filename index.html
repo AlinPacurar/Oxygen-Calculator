@@ -25,10 +25,7 @@
     }
 
     *{box-sizing:border-box}
-
-    html{
-      -webkit-text-size-adjust:100%;
-    }
+    html{-webkit-text-size-adjust:100%}
 
     body{
       margin:0;
@@ -93,27 +90,14 @@
       text-align:center;
     }
 
-    .btn-primary{
-      background:var(--accent);
-      color:#fff;
-    }
-
-    .btn-secondary{
-      background:#fff;
-      color:var(--text);
-      border:1px solid var(--line);
-    }
-
-    .btn-warning{
-      background:#f59e0b;
-      color:#fff;
-    }
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#fff;color:var(--text);border:1px solid var(--line)}
+    .btn-warning{background:#f59e0b;color:#fff}
 
     details.disclaimer{
       background:var(--warn-bg);
       border-left:5px solid var(--warn-line);
       border-radius:14px;
-      padding:0;
       margin:0 0 14px;
       overflow:hidden;
       box-shadow:var(--shadow);
@@ -203,9 +187,7 @@
       min-width:0;
     }
 
-    .field.full{
-      grid-column:1 / -1;
-    }
+    .field.full{grid-column:1 / -1}
 
     label{
       font-size:13px;
@@ -358,8 +340,8 @@
     }
 
     .cyl-graphic{
-      width:clamp(14px, 4vw, 26px);
-      height:clamp(54px, 12vw, 88px);
+      width:clamp(16px, 4vw, 28px);
+      height:clamp(76px, 15vw, 112px);
       display:flex;
       align-items:flex-end;
       justify-content:center;
@@ -369,6 +351,7 @@
 
     .cyl-body{
       width:clamp(8px, 1.8vw, 13px);
+      height:var(--cyl-height, 60%);
       border-radius:16px 16px 12px 12px;
       position:relative;
       background:linear-gradient(180deg,#90a4b8 0%, #6f879d 45%, #4c6277 100%);
@@ -376,6 +359,7 @@
         inset -3px 0 5px rgba(255,255,255,.22),
         inset 4px 0 6px rgba(0,0,0,.12);
       max-height:100%;
+      transition:height .2s ease;
     }
 
     .cyl-body::before{
@@ -529,9 +513,7 @@
       margin:0 auto;
     }
 
-    .update-banner.show{
-      display:block;
-    }
+    .update-banner.show{display:block}
 
     .update-title{
       font-weight:800;
@@ -553,167 +535,60 @@
     }
 
     @media (max-width: 980px){
-      .grid{
-        grid-template-columns:1fr;
-      }
-
-      .logo-wrap img{
-        max-height:140px;
-      }
+      .grid{grid-template-columns:1fr}
+      .logo-wrap img{max-height:140px}
     }
 
     @media (max-width: 720px){
-      .wrap{
-        padding:10px 10px 24px;
-      }
-
-      .header-card,
-      .card{
-        border-radius:18px;
-      }
-
-      .logo-wrap img{
-        width:100%;
-        max-height:none;
-      }
-
-      .top-actions{
-        justify-content:stretch;
-      }
-
-      .top-actions .btn{
-        flex:1 1 100%;
-      }
-
-      .tabs{
-        display:grid;
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-      }
-
-      .tab-btn{
-        width:100%;
-      }
-
-      .input-grid{
-        grid-template-columns:1fr;
-      }
-
-      .mini-stats{
-        grid-template-columns:1fr;
-      }
-
-      .formula-display{
-        gap:6px;
-      }
-
-      .formula-chip{
-        font-size:12px;
-      }
-
-      .formula-op{
-        font-size:16px;
-      }
-
+      .wrap{padding:10px 10px 24px}
+      .header-card,.card{border-radius:18px}
+      .logo-wrap img{width:100%;max-height:none}
+      .top-actions{justify-content:stretch}
+      .top-actions .btn{flex:1 1 100%}
+      .tabs{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .tab-btn{width:100%}
+      .input-grid{grid-template-columns:1fr}
+      .mini-stats{grid-template-columns:1fr}
+      .formula-display{gap:6px}
+      .formula-chip{font-size:12px}
+      .formula-op{font-size:16px}
       .cylinder-row{
         grid-template-columns:repeat(4, minmax(60px, 1fr));
         gap:6px;
       }
-
-      .cyl-card{
-        padding:8px 4px 7px;
-      }
-
+      .cyl-card{padding:8px 4px 7px}
       .cyl-graphic{
         width:16px;
-        height:58px;
+        height:74px;
       }
-
-      .cyl-body{
-        width:8px;
-      }
-
-      .cyl-name{
-        font-size:11px;
-      }
-
-      .cyl-size{
-        font-size:10px;
-      }
-
-      .update-actions .btn{
-        flex:1 1 100%;
-      }
+      .cyl-name{font-size:11px}
+      .cyl-size{font-size:10px}
+      .update-actions .btn{flex:1 1 100%}
     }
 
     @media (max-width: 420px){
-      .wrap{
-        padding:8px 8px 22px;
-      }
-
-      .header-card{
-        padding:8px 8px 12px;
-      }
-
-      .card{
-        padding:13px;
-      }
-
-      .tabs{
-        grid-template-columns:1fr 1fr;
-        gap:6px;
-      }
-
-      .tab-btn{
-        font-size:13px;
-        padding:9px 10px;
-      }
-
-      .result-card{
-        padding:13px;
-      }
-
-      .result-value{
-        font-size:1.55rem;
-      }
-
-      .formula-box{
-        padding:12px;
-      }
-
+      .wrap{padding:8px 8px 22px}
+      .header-card{padding:8px 8px 12px}
+      .card{padding:13px}
+      .tabs{grid-template-columns:1fr 1fr;gap:6px}
+      .tab-btn{font-size:13px;padding:9px 10px}
+      .result-card{padding:13px}
+      .result-value{font-size:1.55rem}
+      .formula-box{padding:12px}
       .cylinder-row{
         grid-template-columns:repeat(4, minmax(56px, 1fr));
         gap:4px;
       }
-
-      .cyl-card{
-        padding:7px 2px 6px;
-      }
-
+      .cyl-card{padding:7px 2px 6px}
       .cyl-graphic{
         width:14px;
-        height:52px;
+        height:70px;
       }
-
-      .cyl-body{
-        width:7px;
-      }
-
-      .cyl-name{
-        font-size:10px;
-      }
-
-      .cyl-size{
-        font-size:9px;
-      }
-
-      .mini{
-        padding:11px;
-      }
-
-      .mini .v{
-        font-size:0.98rem;
-      }
-
+      .cyl-body{width:7px}
+      .cyl-name{font-size:10px}
+      .cyl-size{font-size:9px}
+      .mini{padding:11px}
+      .mini .v{font-size:0.98rem}
       .update-banner{
         left:8px;
         right:8px;
@@ -802,9 +677,7 @@
         <div class="card">
           <h3>Cylinder Planning</h3>
           <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
-
           <div class="cylinder-row" id="ventCylinderRow"></div>
-
           <div class="mini-stats">
             <div class="mini">
               <div class="k">Selected Cylinder</div>
@@ -868,9 +741,7 @@
         <div class="card">
           <h3>Cylinder Planning</h3>
           <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
-
           <div class="cylinder-row" id="spontCylinderRow"></div>
-
           <div class="mini-stats">
             <div class="mini">
               <div class="k">Selected Cylinder</div>
@@ -944,9 +815,7 @@
         <div class="card">
           <h3>Cylinder Planning</h3>
           <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
-
           <div class="cylinder-row" id="cpapCylinderRow"></div>
-
           <div class="mini-stats">
             <div class="mini">
               <div class="k">Selected Cylinder</div>
@@ -1016,9 +885,7 @@
         <div class="card">
           <h3>Cylinder Planning</h3>
           <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
-
           <div class="cylinder-row" id="hfCylinderRow"></div>
-
           <div class="mini-stats">
             <div class="mini">
               <div class="k">Selected Cylinder</div>
@@ -1049,11 +916,8 @@
         </summary>
         <div class="drawer-body">
           <p><strong>Spontaneously breathing patients:</strong> For simple oxygen devices in UK practice, a common teaching estimate is oxygen use as flow × time, then multiplied by around 1.5–2 as a transport or planning margin. The formula <strong>(flow × time) × 2</strong> follows that conservative approach.</p>
-
           <p><strong>Ventilated and CPAP patients:</strong> Guidance commonly allows for extra fixed flow beyond minute volume alone, because ventilators and CPAP systems use more gas than patient minute volume by itself. The ventilated formula <strong>((minute volume + 3) × FiO₂ × time) × 2</strong> is a simplified conservative planning rule that adds extra flow before applying reserve.</p>
-
           <p><strong>CPAP:</strong> The added <strong>leak + 7</strong> term reflects that CPAP circuits generally have higher baseline flow and greater leak than standard invasive ventilation. This is intended as a cautious approximation rather than an exact device-specific consumption value.</p>
-
           <p><strong>High-flow systems:</strong> The formula <strong>(flow × FiO₂ × time) × 2</strong> follows the principle that oxygen consumption is approximately related to total delivered flow multiplied by FiO₂, with the final ×2 acting as a safety buffer.</p>
         </div>
       </details>
@@ -1073,26 +937,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Ventilated</td>
-                <td>MV 20, Extra 3, FiO₂ 1.0, 60 mins</td>
-                <td>2,760 L</td>
-              </tr>
-              <tr>
-                <td>Spontaneously Breathing</td>
-                <td>Flow 15, 60 mins</td>
-                <td>1,800 L</td>
-              </tr>
-              <tr>
-                <td>CPAP</td>
-                <td>MV 10, Leak 15, FiO₂ 1.0, 60 mins</td>
-                <td>3,840 L</td>
-              </tr>
-              <tr>
-                <td>High Flow</td>
-                <td>Flow 60, FiO₂ 1.0, 90 mins</td>
-                <td>10,800 L</td>
-              </tr>
+              <tr><td>Ventilated</td><td>MV 20, Extra 3, FiO₂ 1.0, 60 mins</td><td>2,760 L</td></tr>
+              <tr><td>Spontaneously Breathing</td><td>Flow 15, 60 mins</td><td>1,800 L</td></tr>
+              <tr><td>CPAP</td><td>MV 10, Leak 15, FiO₂ 1.0, 60 mins</td><td>3,840 L</td></tr>
+              <tr><td>High Flow</td><td>Flow 60, FiO₂ 1.0, 90 mins</td><td>10,800 L</td></tr>
             </tbody>
           </table>
         </div>
@@ -1100,7 +948,7 @@
     </div>
 
     <footer>
-      <div><strong>Version:</strong> 1.4.4</div>
+      <div><strong>Version:</strong> 1.4.5</div>
       <div><strong>Last Validated:</strong> 2026-03-23</div>
       <div>© 2026 ARCC KSS · Created by Alin Pacurar · All rights reserved</div>
     </footer>
@@ -1118,15 +966,24 @@
   </div>
 
   <script>
-    const APP_VERSION = "1.4";
+    const APP_VERSION = "1.4.5";
     const VERSION_KEY = "arcc-kss-version";
 
     const cylinders = [
-      { id: "zx", name: "ZX", volume: 3040, height: 74 },
-      { id: "hx", name: "HX", volume: 2300, height: 66 },
-      { id: "e",  name: "E",  volume: 680,  height: 52 },
-      { id: "cd", name: "CD", volume: 460,  height: 40 }
+      { id: "zx", name: "ZX", volume: 3040 },
+      { id: "hx", name: "HX", volume: 2300 },
+      { id: "e",  name: "E",  volume: 680 },
+      { id: "cd", name: "CD", volume: 460 }
     ];
+
+    const maxCylinderVolume = Math.max(...cylinders.map(c => c.volume));
+
+    function cylinderHeightPercent(volume) {
+      const minPct = 38;
+      const maxPct = 92;
+      const ratio = volume / maxCylinderVolume;
+      return (minPct + ratio * (maxPct - minPct)).toFixed(1) + "%";
+    }
 
     const selectedCylinder = {
       vent: "zx",
@@ -1249,7 +1106,7 @@
       if (selectedCylinder[mode] === cyl.id) card.classList.add("active");
       card.innerHTML = `
         <div class="cyl-graphic">
-          <div class="cyl-body" style="height:${cyl.height}px"></div>
+          <div class="cyl-body" style="--cyl-height:${cylinderHeightPercent(cyl.volume)}"></div>
         </div>
         <div class="cyl-name">${cyl.name}</div>
         <div class="cyl-size">${cyl.volume.toLocaleString()} L</div>

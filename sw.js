@@ -1,4 +1,4 @@
-const CACHE_NAME = "oxygen-calculator-v1.4";
+const CACHE_NAME = "oxygen-calculator-v1.4.5";
 const APP_SHELL = [
   "./",
   "./index.html",

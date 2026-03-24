@@ -1,5 +1,15 @@
-## [1.4.4] - 2026-03-23
+## [1.4.5] - 2026-03-23
 
+### Changed
+- Reworked cylinder visual scaling to preserve clearer size differences on iPhone-sized screens
+- Cylinder heights now render proportionally from relative capacity instead of fixed compressed mobile values
+
+### Fixed
+- HX, E, and CD cylinders no longer appear nearly identical to ZX on small screens
+
+### Notes
+- Visual cylinder sizes remain illustrative rather than physically exact, but relative differences are now much clearer across desktop, tablet, and mobile.
+## [1.4.4] - 2026-03-23
 ### Added
 - HX cylinder option (2,300 L)
 
