@@ -378,117 +378,122 @@
       content:"";
       position:absolute;
       top:-4px;
-      left:50%;
-      transform:translateX(95%);
+      right:-1px;
       width:28%;
-      height:4px;
-      background:#7b8ea2;
+      height:3px;
+      background:#475569;
       border-radius:2px;
     }
 
     .cyl-name{
-      font-size:13px;
-      font-weight:800;
-      color:#0f172a;
-      line-height:1.15;
-    }
-
-    .cyl-size{
       font-size:12px;
-      color:#475569;
-      line-height:1.1;
-    }
-
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .stat{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      min-width:0;
-    }
-
-    .stat-label{
-      font-size:12px;
-      color:#64748b;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.04em;
-      margin-bottom:5px;
-    }
-
-    .stat-value{
-      font-size:clamp(1rem, 2.4vw, 1.2rem);
       font-weight:800;
-      color:#0f172a;
+      line-height:1.2;
       word-break:break-word;
     }
 
-    .summary{
+    .cyl-size{
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.2;
+      word-break:break-word;
+    }
+
+    .mini-stats{
       margin-top:14px;
-      font-size:14px;
-      color:#475569;
-      line-height:1.55;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
     }
 
-    .explain{
-      margin-top:14px;
-      background:#fff;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:16px;
-    }
-
-    .explain p{
-      margin:0 0 10px;
-      color:#475569;
-      line-height:1.6;
-      font-size:14px;
-    }
-
-    .example-table-wrap{
-      overflow:auto;
-      margin-top:12px;
+    .mini{
+      background:#f8fafc;
       border:1px solid var(--line);
       border-radius:14px;
-      background:#fff;
+      padding:13px;
+      min-width:0;
     }
 
-    table{
+    .mini .k{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:6px;
+      font-weight:700;
+      line-height:1.3;
+    }
+
+    .mini .v{
+      font-size:1.05rem;
+      font-weight:800;
+      line-height:1.35;
+      overflow-wrap:anywhere;
+    }
+
+    .info-sections{
+      margin-top:18px;
+      display:grid;
+      gap:14px;
+    }
+
+    details.bottom-drawer{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    details.bottom-drawer summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 16px;
+      font-weight:700;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      line-height:1.4;
+    }
+
+    details.bottom-drawer summary::-webkit-details-marker{display:none}
+
+    .drawer-body{
+      padding:0 16px 16px;
+      color:#334155;
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .drawer-body p{
+      margin:10px 0;
+    }
+
+    .test-table{
       width:100%;
       border-collapse:collapse;
-      min-width:560px;
+      margin-top:8px;
+      font-size:14px;
+      display:block;
+      overflow-x:auto;
+      white-space:nowrap;
     }
 
-    th,td{
-      padding:10px 12px;
-      text-align:left;
+    .test-table th,.test-table td{
       border-bottom:1px solid var(--line);
-      font-size:14px;
+      text-align:left;
+      padding:10px 8px;
       vertical-align:top;
     }
 
-    th{
-      background:#f8fafc;
+    footer{
+      margin-top:22px;
+      padding:18px 8px;
+      text-align:center;
+      color:var(--muted);
       font-size:13px;
-      color:#334155;
-      text-transform:uppercase;
-      letter-spacing:.04em;
-    }
-
-    tr:last-child td{border-bottom:none}
-
-    .footer-note{
-      margin-top:14px;
-      font-size:12px;
-      color:#6b7280;
-      line-height:1.55;
+      line-height:1.7;
     }
 
     .update-banner{
@@ -496,166 +501,101 @@
       left:12px;
       right:12px;
       bottom:12px;
-      z-index:50;
-      background:#111827;
-      color:#fff;
-      border-radius:18px;
-      box-shadow:0 18px 40px rgba(0,0,0,.25);
-      padding:14px;
+      z-index:9999;
       display:none;
+      background:#fff;
+      border:1px solid #f59e0b;
+      border-left:6px solid #f59e0b;
+      border-radius:16px;
+      box-shadow:0 14px 34px rgba(15,23,42,0.18);
+      padding:14px;
+      max-width:560px;
+      margin:0 auto;
     }
 
     .update-banner.show{display:block}
 
-    .update-banner-title{
-      font-size:15px;
+    .update-title{
       font-weight:800;
       margin-bottom:6px;
+      color:#92400e;
     }
 
-    .update-banner-text{
+    .update-text{
       font-size:14px;
+      color:#78350f;
       line-height:1.5;
-      color:#e5e7eb;
+      margin-bottom:12px;
     }
 
-    .update-banner-actions{
+    .update-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      font-size:12px;
-      background:#eef2ff;
-      color:#3730a3;
-      border:1px solid #c7d2fe;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:700;
     }
 
     @media (max-width: 980px){
-      .grid{
-        grid-template-columns:1fr;
-      }
+      .grid{grid-template-columns:1fr}
+      .logo-wrap img{max-height:140px}
     }
 
     @media (max-width: 720px){
-      .wrap{
-        padding:12px 10px 24px;
-      }
-
-      .header-card{
-        border-radius:18px;
-        padding:10px 10px 12px;
-      }
-
-      .logo-wrap img{
-        max-height:96px;
-      }
-
-      .tabs{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:8px;
-      }
-
-      .tab-btn{
-        width:100%;
-        min-width:0;
-      }
-
-      .card{
-        padding:14px;
-        border-radius:16px;
-      }
-
-      .input-grid{
-        grid-template-columns:1fr;
-      }
-
-      .stats-grid{
-        grid-template-columns:1fr;
-      }
-
+      .wrap{padding:10px 10px 24px}
+      .header-card,.card{border-radius:18px}
+      .logo-wrap img{width:100%;max-height:none}
+      .top-actions{justify-content:stretch}
+      .top-actions .btn{flex:1 1 100%}
+      .tabs{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .tab-btn{width:100%}
+      .input-grid{grid-template-columns:1fr}
+      .mini-stats{grid-template-columns:1fr}
+      .formula-display{gap:6px}
+      .formula-chip{font-size:12px}
+      .formula-op{font-size:16px}
       .cylinder-row{
-        grid-template-columns:repeat(4, minmax(0, 1fr));
+        grid-template-columns:repeat(4, minmax(60px, 1fr));
         gap:6px;
       }
-
-      .cyl-card{
-        padding:8px 4px 7px;
-        border-radius:12px;
-        gap:4px;
-      }
-
+      .cyl-card{padding:8px 4px 7px}
       .cyl-graphic{
-        height:84px;
+        width:16px;
+        height:74px;
       }
-
-      .cyl-name{
-        font-size:12px;
-      }
-
-      .cyl-size{
-        font-size:11px;
-      }
-
-      .formula-display{
-        gap:6px;
-      }
-
-      .formula-op{
-        font-size:16px;
-      }
+      .cyl-name{font-size:11px}
+      .cyl-size{font-size:10px}
+      .update-actions .btn{flex:1 1 100%}
     }
 
     @media (max-width: 420px){
-      .wrap{
-        padding:10px 8px 20px;
-      }
-
-      .top-actions{
-        justify-content:stretch;
-      }
-
-      .top-actions .btn{
-        width:100%;
-      }
-
+      .wrap{padding:8px 8px 22px}
+      .header-card{padding:8px 8px 12px}
+      .card{padding:13px}
+      .tabs{grid-template-columns:1fr 1fr;gap:6px}
+      .tab-btn{font-size:13px;padding:9px 10px}
+      .result-card{padding:13px}
+      .result-value{font-size:1.55rem}
+      .formula-box{padding:12px}
       .cylinder-row{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:8px;
+        grid-template-columns:repeat(4, minmax(56px, 1fr));
+        gap:4px;
       }
-
-      .cyl-card{
-        min-height:148px;
-        padding:10px 6px 8px;
-      }
-
+      .cyl-card{padding:7px 2px 6px}
       .cyl-graphic{
-        height:90px;
+        width:14px;
+        height:70px;
       }
-
+      .cyl-body{width:7px}
+      .cyl-name{font-size:10px}
+      .cyl-size{font-size:9px}
+      .mini{padding:11px}
+      .mini .v{font-size:0.98rem}
       .update-banner{
         left:8px;
         right:8px;
         bottom:8px;
-        padding:12px;
-        border-radius:16px;
-      }
-
-      .update-banner-actions .btn{
-        width:100%;
       }
     }
   </style>
-  <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <div class="wrap">
@@ -664,153 +604,133 @@
         <img src="arcc-kss-logo.png" alt="ARCC KSS" />
       </div>
       <div class="top-actions">
-        <button class="btn btn-secondary" id="copySummaryBtn" type="button">Copy summary</button>
+        <a class="btn btn-secondary" href="https://robloveless25.github.io/transfercalculator" target="_blank" rel="noopener noreferrer">Transfer Calculator</a>
+        <button class="btn btn-primary" type="button" id="copySummaryBtn">Copy Summary</button>
       </div>
     </div>
 
     <details class="disclaimer">
       <summary>
-        <span>Clinical disclaimer</span>
-        <span aria-hidden="true">Tap to expand</span>
+        <span>Clinical Disclaimer</span>
+        <span>▾</span>
       </summary>
       <div class="disclaimer-body">
         This calculator is intended to support approximate transport oxygen planning only. It does not replace clinical judgment, local policy, equipment checks, manufacturer guidance, or bedside assessment. All values should be independently verified before transfer. Ensure cylinder pressures, device performance, reserve requirements, patient condition, route delays, and escalation contingencies are considered before use.
       </div>
     </details>
 
-    <div class="tabs">
-      <button class="tab-btn active" type="button" data-tab="vent">Ventilated</button>
-      <button class="tab-btn" type="button" data-tab="spont">Spontaneously Breathing</button>
-      <button class="tab-btn" type="button" data-tab="cpap">CPAP</button>
-      <button class="tab-btn" type="button" data-tab="hf">High Flow</button>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="vent">Ventilated</button>
+      <button class="tab-btn" data-tab="spont">Spontaneously Breathing</button>
+      <button class="tab-btn" data-tab="cpap">CPAP</button>
+      <button class="tab-btn" data-tab="hf">High Flow</button>
     </div>
 
-    <section class="panel active" id="ventPanel">
+    <section class="panel active" id="panel-vent">
       <div class="grid">
         <div class="card">
-          <h2>Ventilated patient</h2>
-          <div class="badge">Formula: ((Minute Volume + Extra Flow) × FiO₂ × Time) × 2</div>
-
-          <div class="input-grid" style="margin-top:12px">
+          <h2>Ventilated Patient</h2>
+          <div class="input-grid">
             <div class="field">
-              <label for="ventMinuteVolume">Minute volume (L/min)</label>
-              <input id="ventMinuteVolume" type="number" min="0" max="200" step="0.1" inputmode="decimal" value="20" />
-              <div class="hint">Patient minute volume.</div>
+              <label for="ventMinuteVolume">Patient Minute Volume (L/min)</label>
+              <input id="ventMinuteVolume" type="number" min="0" step="0.1" value="20" />
             </div>
-
             <div class="field">
-              <label for="ventExtra">Extra flow allowance (L/min)</label>
-              <input id="ventExtra" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="3" />
-              <div class="hint">Default extra flow is 3 L/min.</div>
+              <label for="ventExtra">Ventilator Extra Flow (L/min)</label>
+              <input id="ventExtra" type="number" min="0" step="0.1" value="3" />
             </div>
-
             <div class="field">
-              <label for="ventFiO2">FiO₂ (%)</label>
-              <select id="ventFiO2"></select>
-              <div class="hint">Select oxygen concentration from 21% to 100%.</div>
+              <label for="ventFiO2Percent">FiO₂ (%)</label>
+              <select id="ventFiO2Percent"></select>
             </div>
-
             <div class="field">
-              <label for="ventTime">Transfer time (minutes)</label>
-              <input id="ventTime" type="number" min="1" max="1440" step="1" inputmode="numeric" value="60" />
-              <div class="hint">A ×2 reserve is added automatically.</div>
+              <label for="ventTime">Transfer Time (mins)</label>
+              <input id="ventTime" type="number" min="1" step="1" value="60" />
             </div>
           </div>
 
           <div class="warning" id="ventWarning"></div>
 
           <div class="result-card">
-            <div class="result-label">Estimated oxygen required</div>
-            <div class="result-value" id="ventResult">—</div>
-            <div class="result-sub">Approximate transport planning requirement including reserve.</div>
+            <div class="result-label">Estimated Oxygen Required</div>
+            <div class="result-value" id="ventResult">0 L</div>
+            <div class="result-sub">Includes contingency reserve.</div>
           </div>
 
           <div class="formula-box">
-            <h4>How it is calculated</h4>
+            <h4>Formula Summary</h4>
             <div class="formula-display">
-              <span class="formula-chip">Minute Volume</span>
-              <span class="formula-op">+</span>
-              <span class="formula-chip">Extra Flow</span>
+              <span class="formula-chip">(Minute Volume + Extra Flow)</span>
               <span class="formula-op">×</span>
               <span class="formula-chip">FiO₂ %</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">Time (mins)</span>
+              <span class="formula-chip">Time</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">2 reserve</span>
+              <span class="formula-chip">2 Safety Factor</span>
             </div>
             <div class="formula-note">
-              This mode estimates oxygen use from minute volume plus a fixed extra flow allowance, then applies the oxygen concentration and a reserve factor.
+              FiO₂ is selected as a percentage and converted internally to a decimal for calculation.
             </div>
           </div>
         </div>
 
         <div class="card">
-          <h3>Cylinder planning</h3>
-          <div class="hint">Tap a cylinder size to compare how many are needed and how long one cylinder might last at the calculated oxygen flow.</div>
+          <h3>Cylinder Planning</h3>
+          <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
           <div class="cylinder-row" id="ventCylinderRow"></div>
-
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-label">Selected cylinder</div>
-              <div class="stat-value" id="ventCylinderName">—</div>
+          <div class="mini-stats">
+            <div class="mini">
+              <div class="k">Selected Cylinder</div>
+              <div class="v" id="ventCylinderName">ZX</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx cylinders needed</div>
-              <div class="stat-value" id="ventCylinderNeeded">—</div>
+            <div class="mini">
+              <div class="k">Approx Cylinders Needed</div>
+              <div class="v" id="ventCylinderNeeded">0</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx duration / cylinder</div>
-              <div class="stat-value" id="ventCylinderDuration">—</div>
+            <div class="mini">
+              <div class="k">Approx Duration / Cylinder</div>
+              <div class="v" id="ventCylinderDuration">0 mins</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Oxygen flow used</div>
-              <div class="stat-value" id="ventFlowUsed">—</div>
+            <div class="mini">
+              <div class="k">Usable Planning Flow</div>
+              <div class="v" id="ventFlowUsed">0 L/min</div>
             </div>
-          </div>
-
-          <div class="summary">
-            Cylinder duration is based on the calculated oxygen flow only, not total ventilator gas flow.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="spontPanel">
+    <section class="panel" id="panel-spont">
       <div class="grid">
         <div class="card">
-          <h2>Spontaneously breathing patient</h2>
-          <div class="badge">Formula: (Flow × Time) × 2</div>
-
-          <div class="input-grid" style="margin-top:12px">
+          <h2>Spontaneously Breathing Patient</h2>
+          <div class="input-grid">
             <div class="field">
-              <label for="spontFlow">Oxygen flow (L/min)</label>
+              <label for="spontFlow">Flow (L/min)</label>
               <select id="spontFlow"></select>
-              <div class="hint">Simple dropdown from 1 to 15 L/min.</div>
             </div>
-
             <div class="field">
-              <label for="spontTime">Transfer time (minutes)</label>
-              <input id="spontTime" type="number" min="1" max="1440" step="1" inputmode="numeric" value="60" />
-              <div class="hint">A ×2 reserve is added automatically.</div>
+              <label for="spontTime">Transfer Time (mins)</label>
+              <input id="spontTime" type="number" min="1" step="1" value="60" />
             </div>
           </div>
 
           <div class="warning" id="spontWarning"></div>
 
           <div class="result-card">
-            <div class="result-label">Estimated oxygen required</div>
-            <div class="result-value" id="spontResult">—</div>
-            <div class="result-sub">Approximate transport planning requirement including reserve.</div>
+            <div class="result-label">Estimated Oxygen Required</div>
+            <div class="result-value" id="spontResult">0 L</div>
+            <div class="result-sub">Includes contingency reserve.</div>
           </div>
 
           <div class="formula-box">
-            <h4>How it is calculated</h4>
+            <h4>Formula Summary</h4>
             <div class="formula-display">
-              <span class="formula-chip">Flow (L/min)</span>
+              <span class="formula-chip">Flow</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">Time (mins)</span>
+              <span class="formula-chip">Time</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">2 reserve</span>
+              <span class="formula-chip">2 Safety Factor</span>
             </div>
             <div class="formula-note">
               A simple conservative planning rule based on oxygen flow over time, with reserve added for transport margin.
@@ -819,320 +739,291 @@
         </div>
 
         <div class="card">
-          <h3>Cylinder planning</h3>
-          <div class="hint">Tap a cylinder size to compare how many are needed and how long one cylinder might last at the selected flow.</div>
+          <h3>Cylinder Planning</h3>
+          <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
           <div class="cylinder-row" id="spontCylinderRow"></div>
-
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-label">Selected cylinder</div>
-              <div class="stat-value" id="spontCylinderName">—</div>
+          <div class="mini-stats">
+            <div class="mini">
+              <div class="k">Selected Cylinder</div>
+              <div class="v" id="spontCylinderName">ZX</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx cylinders needed</div>
-              <div class="stat-value" id="spontCylinderNeeded">—</div>
+            <div class="mini">
+              <div class="k">Approx Cylinders Needed</div>
+              <div class="v" id="spontCylinderNeeded">0</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx duration / cylinder</div>
-              <div class="stat-value" id="spontCylinderDuration">—</div>
+            <div class="mini">
+              <div class="k">Approx Duration / Cylinder</div>
+              <div class="v" id="spontCylinderDuration">0 mins</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Oxygen flow used</div>
-              <div class="stat-value" id="spontFlowUsed">—</div>
+            <div class="mini">
+              <div class="k">Usable Planning Flow</div>
+              <div class="v" id="spontFlowUsed">0 L/min</div>
             </div>
-          </div>
-
-          <div class="summary">
-            Duration assumes the set oxygen flow is continuously used for the whole transfer period.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="cpapPanel">
+    <section class="panel" id="panel-cpap">
       <div class="grid">
         <div class="card">
-          <h2>CPAP patient</h2>
-          <div class="badge">Formula: ((Minute Volume + Leak + 7) × FiO₂ × Time) × 2</div>
-
-          <div class="input-grid" style="margin-top:12px">
+          <h2>CPAP</h2>
+          <div class="input-grid">
             <div class="field">
-              <label for="cpapMinuteVolume">Minute volume (L/min)</label>
-              <input id="cpapMinuteVolume" type="number" min="0" max="200" step="0.1" inputmode="decimal" value="10" />
-              <div class="hint">Patient minute volume.</div>
+              <label for="cpapMinuteVolume">Patient Minute Volume (L/min)</label>
+              <input id="cpapMinuteVolume" type="number" min="0" step="0.1" value="10" />
             </div>
-
             <div class="field">
-              <label for="cpapLeak">Estimated leak / extra flow (L/min)</label>
-              <input id="cpapLeak" type="number" min="0" max="200" step="0.1" inputmode="decimal" value="15" />
-              <div class="hint">Additional flow estimate for leak/system demand.</div>
+              <label for="cpapLeak">Leak (L/min)</label>
+              <input id="cpapLeak" type="number" min="0" step="0.1" value="15" />
             </div>
-
             <div class="field">
-              <label for="cpapFiO2">FiO₂ (%)</label>
-              <select id="cpapFiO2"></select>
-              <div class="hint">Select oxygen concentration from 21% to 100%.</div>
+              <label for="cpapFiO2Percent">FiO₂ (%)</label>
+              <select id="cpapFiO2Percent"></select>
             </div>
-
             <div class="field">
-              <label for="cpapTime">Transfer time (minutes)</label>
-              <input id="cpapTime" type="number" min="1" max="1440" step="1" inputmode="numeric" value="60" />
-              <div class="hint">A ×2 reserve is added automatically.</div>
+              <label for="cpapTime">Transfer Time (mins)</label>
+              <input id="cpapTime" type="number" min="1" step="1" value="60" />
             </div>
           </div>
 
           <div class="warning" id="cpapWarning"></div>
 
           <div class="result-card">
-            <div class="result-label">Estimated oxygen required</div>
-            <div class="result-value" id="cpapResult">—</div>
-            <div class="result-sub">Approximate transport planning requirement including reserve.</div>
+            <div class="result-label">Estimated Oxygen Required</div>
+            <div class="result-value" id="cpapResult">0 L</div>
+            <div class="result-sub">Includes contingency reserve.</div>
           </div>
 
           <div class="formula-box">
-            <h4>How it is calculated</h4>
+            <h4>Formula Summary</h4>
             <div class="formula-display">
-              <span class="formula-chip">Minute Volume</span>
-              <span class="formula-op">+</span>
-              <span class="formula-chip">Leak / Extra Flow</span>
-              <span class="formula-op">+</span>
-              <span class="formula-chip">7 L/min</span>
+              <span class="formula-chip">(Minute Volume + Leak + 7)</span>
               <span class="formula-op">×</span>
               <span class="formula-chip">FiO₂ %</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">Time (mins)</span>
+              <span class="formula-chip">Time</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">2 reserve</span>
+              <span class="formula-chip">2 Safety Factor</span>
             </div>
             <div class="formula-note">
-              This mode uses minute volume plus estimated leak and an extra 7 L/min allowance before applying oxygen concentration and reserve.
+              FiO₂ is selected as a percentage and converted internally to a decimal for calculation.
             </div>
           </div>
         </div>
 
         <div class="card">
-          <h3>Cylinder planning</h3>
-          <div class="hint">Tap a cylinder size to compare how many are needed and how long one cylinder might last at the calculated oxygen flow.</div>
+          <h3>Cylinder Planning</h3>
+          <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
           <div class="cylinder-row" id="cpapCylinderRow"></div>
-
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-label">Selected cylinder</div>
-              <div class="stat-value" id="cpapCylinderName">—</div>
+          <div class="mini-stats">
+            <div class="mini">
+              <div class="k">Selected Cylinder</div>
+              <div class="v" id="cpapCylinderName">ZX</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx cylinders needed</div>
-              <div class="stat-value" id="cpapCylinderNeeded">—</div>
+            <div class="mini">
+              <div class="k">Approx Cylinders Needed</div>
+              <div class="v" id="cpapCylinderNeeded">0</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx duration / cylinder</div>
-              <div class="stat-value" id="cpapCylinderDuration">—</div>
+            <div class="mini">
+              <div class="k">Approx Duration / Cylinder</div>
+              <div class="v" id="cpapCylinderDuration">0 mins</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Oxygen flow used</div>
-              <div class="stat-value" id="cpapFlowUsed">—</div>
+            <div class="mini">
+              <div class="k">Usable Planning Flow</div>
+              <div class="v" id="cpapFlowUsed">0 L/min</div>
             </div>
-          </div>
-
-          <div class="summary">
-            Cylinder duration is based on the calculated oxygen flow only, not total CPAP machine flow.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="hfPanel">
+    <section class="panel" id="panel-hf">
       <div class="grid">
         <div class="card">
-          <h2>High-flow oxygen</h2>
-          <div class="badge">Formula: (Flow × FiO₂ × Time) × 2</div>
-
-          <div class="input-grid" style="margin-top:12px">
+          <h2>High Flow</h2>
+          <div class="input-grid">
             <div class="field">
-              <label for="hfFlow">Total flow (L/min)</label>
-              <input id="hfFlow" type="number" min="0" max="150" step="0.1" inputmode="decimal" value="60" />
-              <div class="hint">Total delivered flow.</div>
+              <label for="hfFlow">Flow (L/min)</label>
+              <input id="hfFlow" type="number" min="0" step="0.1" value="60" />
             </div>
-
             <div class="field">
-              <label for="hfFiO2">FiO₂ (%)</label>
-              <select id="hfFiO2"></select>
-              <div class="hint">Select oxygen concentration from 21% to 100%.</div>
+              <label for="hfFiO2Percent">FiO₂ (%)</label>
+              <select id="hfFiO2Percent"></select>
             </div>
-
             <div class="field full">
-              <label for="hfTime">Transfer time (minutes)</label>
-              <input id="hfTime" type="number" min="1" max="1440" step="1" inputmode="numeric" value="90" />
-              <div class="hint">A ×2 reserve is added automatically.</div>
+              <label for="hfTime">Transfer Time (mins)</label>
+              <input id="hfTime" type="number" min="1" step="1" value="90" />
             </div>
           </div>
 
           <div class="warning" id="hfWarning"></div>
 
           <div class="result-card">
-            <div class="result-label">Estimated oxygen required</div>
-            <div class="result-value" id="hfResult">—</div>
-            <div class="result-sub">Approximate transport planning requirement including reserve.</div>
+            <div class="result-label">Estimated Oxygen Required</div>
+            <div class="result-value" id="hfResult">0 L</div>
+            <div class="result-sub">Includes contingency reserve.</div>
           </div>
 
           <div class="formula-box">
-            <h4>How it is calculated</h4>
+            <h4>Formula Summary</h4>
             <div class="formula-display">
-              <span class="formula-chip">Flow (L/min)</span>
+              <span class="formula-chip">Flow</span>
               <span class="formula-op">×</span>
               <span class="formula-chip">FiO₂ %</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">Time (mins)</span>
+              <span class="formula-chip">Time</span>
               <span class="formula-op">×</span>
-              <span class="formula-chip">2 reserve</span>
+              <span class="formula-chip">2 Safety Factor</span>
             </div>
             <div class="formula-note">
-              Estimates oxygen use from total delivered flow and oxygen fraction, with reserve added to reduce underestimation during transport.
+              FiO₂ is selected as a percentage and converted internally to a decimal for calculation.
             </div>
           </div>
         </div>
 
         <div class="card">
-          <h3>Cylinder planning</h3>
-          <div class="hint">Tap a cylinder size to compare how many are needed and how long one cylinder might last at the calculated oxygen flow.</div>
+          <h3>Cylinder Planning</h3>
+          <div class="hint">Select a cylinder type to estimate cylinders required and approximate cylinder duration.</div>
           <div class="cylinder-row" id="hfCylinderRow"></div>
-
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="stat-label">Selected cylinder</div>
-              <div class="stat-value" id="hfCylinderName">—</div>
+          <div class="mini-stats">
+            <div class="mini">
+              <div class="k">Selected Cylinder</div>
+              <div class="v" id="hfCylinderName">ZX</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx cylinders needed</div>
-              <div class="stat-value" id="hfCylinderNeeded">—</div>
+            <div class="mini">
+              <div class="k">Approx Cylinders Needed</div>
+              <div class="v" id="hfCylinderNeeded">0</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Approx duration / cylinder</div>
-              <div class="stat-value" id="hfCylinderDuration">—</div>
+            <div class="mini">
+              <div class="k">Approx Duration / Cylinder</div>
+              <div class="v" id="hfCylinderDuration">0 mins</div>
             </div>
-            <div class="stat">
-              <div class="stat-label">Oxygen flow used</div>
-              <div class="stat-value" id="hfFlowUsed">—</div>
+            <div class="mini">
+              <div class="k">Usable Planning Flow</div>
+              <div class="v" id="hfFlowUsed">0 L/min</div>
             </div>
-          </div>
-
-          <div class="summary">
-            Duration is based on oxygen-equivalent flow from total flow multiplied by FiO₂.
           </div>
         </div>
       </div>
     </section>
 
-    <div class="explain">
-      <h3 style="margin:0 0 10px">How these formulas are being used</h3>
-      <p><strong>Spontaneously breathing patients:</strong> For simple oxygen devices in UK practice, a common teaching estimate is oxygen use as flow × time, then multiplied by around 1.5–2 as a transport or planning margin. The formula <strong>(flow × time) × 2</strong> follows that conservative approach.</p>
-      <p><strong>Ventilated and CPAP patients:</strong> Guidance commonly allows for extra fixed flow beyond minute volume alone, because ventilators and CPAP systems use more gas than patient minute volume by itself. The ventilated formula <strong>((minute volume + 3) × FiO₂ × time) × 2</strong> is a simplified conservative planning rule that adds extra flow before applying reserve.</p>
-      <p>The CPAP formula <strong>((minute volume + leak + 7) × FiO₂ × time) × 2</strong> has been set to match your source workbook outputs and should be treated as a pragmatic planning estimate unless the workbook logic is formally validated.</p>
-      <p><strong>High-flow systems:</strong> The formula <strong>(flow × FiO₂ × time) × 2</strong> follows the principle that oxygen consumption is approximately related to total delivered flow multiplied by FiO₂, with the final ×2 acting as a safety buffer.</p>
+    <div class="info-sections">
+      <details class="bottom-drawer">
+        <summary>
+          <span>Why These Formulas Were Chosen</span>
+          <span>▾</span>
+        </summary>
+        <div class="drawer-body">
+          <p><strong>Spontaneously breathing patients:</strong> For simple oxygen devices in UK practice, a common teaching estimate is oxygen use as flow × time, then multiplied by around 1.5–2 as a transport or planning margin. The formula <strong>(flow × time) × 2</strong> follows that conservative approach.</p>
+          <p><strong>Ventilated and CPAP patients:</strong> Guidance commonly allows for extra fixed flow beyond minute volume alone, because ventilators and CPAP systems use more gas than patient minute volume by itself. The ventilated formula <strong>((minute volume + 3) × FiO₂ × time) × 2</strong> is a simplified conservative planning rule that adds extra flow before applying reserve.</p>
+          <p><strong>CPAP:</strong> The added <strong>leak + 7</strong> term reflects that CPAP circuits generally have higher baseline flow and greater leak than standard invasive ventilation. This is intended as a cautious approximation rather than an exact device-specific consumption value.</p>
+          <p><strong>High-flow systems:</strong> The formula <strong>(flow × FiO₂ × time) × 2</strong> follows the principle that oxygen consumption is approximately related to total delivered flow multiplied by FiO₂, with the final ×2 acting as a safety buffer.</p>
+        </div>
+      </details>
 
-      <div class="example-table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Mode</th>
-              <th>Example input</th>
-              <th>Output</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Ventilated</td><td>MV 20, Extra 3, FiO₂ 100%, 60 mins</td><td>2,760 L</td></tr>
-            <tr><td>Spontaneous</td><td>Flow 15, 60 mins</td><td>1,800 L</td></tr>
-            <tr><td>CPAP</td><td>MV 10, Leak 15, FiO₂ 100%, 60 mins</td><td>3,840 L</td></tr>
-            <tr><td>High Flow</td><td>Flow 60, FiO₂ 100%, 90 mins</td><td>10,800 L</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="footer-note">
-        Cylinder sizes used in this version: ZX 490 L, HX 1,860 L, E 680 L, CD 460 L. These should be checked against your local stock and usable fill assumptions.
-      </div>
+      <details class="bottom-drawer">
+        <summary>
+          <span>Validation / Test Values</span>
+          <span>▾</span>
+        </summary>
+        <div class="drawer-body">
+          <table class="test-table">
+            <thead>
+              <tr>
+                <th>Mode</th>
+                <th>Example Inputs</th>
+                <th>Expected Output</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ventilated</td><td>MV 20, Extra 3, FiO₂ 100%, 60 mins</td><td>2,760 L</td></tr>
+              <tr><td>Spontaneously Breathing</td><td>Flow 15, 60 mins</td><td>1,800 L</td></tr>
+              <tr><td>CPAP</td><td>MV 10, Leak 15, FiO₂ 100%, 60 mins</td><td>3,840 L</td></tr>
+              <tr><td>High Flow</td><td>Flow 60, FiO₂ 100%, 90 mins</td><td>10,800 L</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
     </div>
+
+    <footer>
+      <div><strong>Version:</strong> 1.4.6</div>
+      <div><strong>Last Validated:</strong> 2026-03-23</div>
+      <div>© 2026 ARCC KSS · Created by Alin Pacurar · All rights reserved</div>
+    </footer>
   </div>
 
-  <div class="update-banner" id="updateBanner" role="status" aria-live="polite">
-    <div class="update-banner-title">New version available</div>
-    <div class="update-banner-text">
-      A newer version of the calculator has been detected. Refresh now to make sure you are using the latest formulas and cached files.
+  <div class="update-banner" id="updateBanner">
+    <div class="update-title">New version available</div>
+    <div class="update-text">
+      A newer version of the Oxygen Calculator has been detected. Update now to refresh cached files and load the latest version.
     </div>
-    <div class="update-banner-actions">
-      <button class="btn btn-warning" id="updateNowBtn" type="button">Update now</button>
-      <button class="btn btn-secondary" id="dismissUpdateBtn" type="button">Later</button>
+    <div class="update-actions">
+      <button class="btn btn-warning" type="button" id="updateNowBtn">Update now</button>
+      <button class="btn btn-secondary" type="button" id="dismissUpdateBtn">Later</button>
     </div>
   </div>
 
   <script>
     const APP_VERSION = "1.4.6";
-    const VERSION_KEY = "arcc-kss-oxygen-calc-version";
+    const VERSION_KEY = "arcc-kss-version";
+
     const cylinders = [
-      { id:"zx", name:"ZX", volume:490 },
-      { id:"hx", name:"HX", volume:1860 },
-      { id:"e",  name:"E",  volume:680 },
-      { id:"cd", name:"CD", volume:460 }
+      { id: "zx", name: "ZX", volume: 3040 },
+      { id: "hx", name: "HX", volume: 2300 },
+      { id: "e",  name: "E",  volume: 680 },
+      { id: "cd", name: "CD", volume: 460 }
     ];
 
+    const maxCylinderVolume = Math.max(...cylinders.map(c => c.volume));
+
+    function cylinderHeightPercent(volume) {
+      const minPct = 38;
+      const maxPct = 92;
+      const ratio = volume / maxCylinderVolume;
+      return (minPct + ratio * (maxPct - minPct)).toFixed(1) + "%";
+    }
+
     const selectedCylinder = {
-      vent:"hx",
-      spont:"e",
-      cpap:"hx",
-      hf:"hx"
+      vent: "zx",
+      spont: "zx",
+      cpap: "zx",
+      hf: "zx"
     };
 
-    function cylinderHeightPercent(volume){
-      const max = Math.max(...cylinders.map(c => c.volume));
-      return `${Math.max(34, Math.round((volume / max) * 100))}%`;
-    }
+    const tabs = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".panel");
 
-    function setActiveTab(tab){
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === tab);
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tab = btn.dataset.tab;
+        tabs.forEach(b => b.classList.toggle("active", b === btn));
+        panels.forEach(p => p.classList.toggle("active", p.id === `panel-${tab}`));
       });
-      document.querySelectorAll(".panel").forEach(panel => {
-        panel.classList.toggle("active", panel.id === `${tab}Panel`);
-      });
-      saveState();
-    }
-
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
     });
 
-    function clearAppCachesAndReload() {
-      const finishReload = () => {
+    async function clearAppCachesAndReload() {
+      try {
+        if ("serviceWorker" in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+        }
+
+        if ("caches" in window) {
+          const names = await caches.keys();
+          await Promise.all(names.map(name => caches.delete(name)));
+        }
+
         localStorage.setItem(VERSION_KEY, APP_VERSION);
         window.location.reload();
-      };
-
-      if (!("caches" in window)) {
-        finishReload();
-        return;
+      } catch (err) {
+        console.error("Cache clear failed", err);
+        localStorage.setItem(VERSION_KEY, APP_VERSION);
+        window.location.reload();
       }
-
-      caches.keys()
-        .then(keys => Promise.all(keys.map(key => caches.delete(key))))
-        .then(() => {
-          localStorage.setItem(VERSION_KEY, APP_VERSION);
-          if ("serviceWorker" in navigator) {
-            return navigator.serviceWorker.getRegistrations()
-              .then(regs => Promise.all(regs.map(reg => reg.unregister())))
-              .then(() => finishReload());
-          }
-          finishReload();
-        })
-        .catch(() => {
-          localStorage.setItem(VERSION_KEY, APP_VERSION);
-          finishReload();
-        });
-    }
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      });
     }
 
     function setupVersionCheck() {
@@ -1166,20 +1057,21 @@
       }
     }
 
-    function populateFiO2Dropdowns() {
-      ["ventFiO2", "cpapFiO2", "hfFiO2"].forEach(id => {
-        const select = document.getElementById(id);
-        if (!select) return;
-        const currentValue = select.dataset.default || "100";
-        select.innerHTML = "";
-        for (let i = 21; i <= 100; i++) {
-          const opt = document.createElement("option");
-          opt.value = String(i);
-          opt.textContent = `${i}%`;
-          if (String(i) === currentValue) opt.selected = true;
-          select.appendChild(opt);
-        }
-      });
+    function populateFiO2Dropdown(id, defaultValue = 100) {
+      const select = document.getElementById(id);
+      if (!select) return;
+      select.innerHTML = "";
+      for (let i = 21; i <= 100; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = `${i}%`;
+        if (i === defaultValue) opt.selected = true;
+        select.appendChild(opt);
+      }
+    }
+
+    function percentToDecimal(percentValue) {
+      return (parseFloat(percentValue) || 0) / 100;
     }
 
     function fmtLitres(value){
@@ -1268,8 +1160,8 @@
     function calcVent(){
       const mv = parseFloat(document.getElementById("ventMinuteVolume").value);
       const extra = parseFloat(document.getElementById("ventExtra").value);
-      const fio2Percent = parseFloat(document.getElementById("ventFiO2").value);
-      const fio2 = fio2Percent / 100;
+      const fio2Percent = parseFloat(document.getElementById("ventFiO2Percent").value);
+      const fio2 = percentToDecimal(fio2Percent);
       const time = parseFloat(document.getElementById("ventTime").value);
 
       if (clampNumber(mv, 0, 200) === null || clampNumber(extra, 0, 100) === null || clampNumber(fio2Percent, 21, 100) === null || clampNumber(time, 1, 1440) === null){
@@ -1306,8 +1198,8 @@
     function calcCPAP(){
       const mv = parseFloat(document.getElementById("cpapMinuteVolume").value);
       const leak = parseFloat(document.getElementById("cpapLeak").value);
-      const fio2Percent = parseFloat(document.getElementById("cpapFiO2").value);
-      const fio2 = fio2Percent / 100;
+      const fio2Percent = parseFloat(document.getElementById("cpapFiO2Percent").value);
+      const fio2 = percentToDecimal(fio2Percent);
       const time = parseFloat(document.getElementById("cpapTime").value);
 
       if (clampNumber(mv, 0, 200) === null || clampNumber(leak, 0, 200) === null || clampNumber(fio2Percent, 21, 100) === null || clampNumber(time, 1, 1440) === null){
@@ -1326,8 +1218,8 @@
 
     function calcHF(){
       const flow = parseFloat(document.getElementById("hfFlow").value);
-      const fio2Percent = parseFloat(document.getElementById("hfFiO2").value);
-      const fio2 = fio2Percent / 100;
+      const fio2Percent = parseFloat(document.getElementById("hfFiO2Percent").value);
+      const fio2 = percentToDecimal(fio2Percent);
       const time = parseFloat(document.getElementById("hfTime").value);
 
       if (clampNumber(flow, 0, 150) === null || clampNumber(fio2Percent, 21, 100) === null || clampNumber(time, 1, 1440) === null){
@@ -1354,19 +1246,18 @@
 
     function saveState(){
       const data = {
-        activeTab: document.querySelector(".tab-btn.active")?.dataset.tab || "vent",
         ventMinuteVolume: document.getElementById("ventMinuteVolume").value,
         ventExtra: document.getElementById("ventExtra").value,
-        ventFiO2: document.getElementById("ventFiO2").value,
+        ventFiO2Percent: document.getElementById("ventFiO2Percent").value,
         ventTime: document.getElementById("ventTime").value,
         spontFlow: document.getElementById("spontFlow").value,
         spontTime: document.getElementById("spontTime").value,
         cpapMinuteVolume: document.getElementById("cpapMinuteVolume").value,
         cpapLeak: document.getElementById("cpapLeak").value,
-        cpapFiO2: document.getElementById("cpapFiO2").value,
+        cpapFiO2Percent: document.getElementById("cpapFiO2Percent").value,
         cpapTime: document.getElementById("cpapTime").value,
         hfFlow: document.getElementById("hfFlow").value,
-        hfFiO2: document.getElementById("hfFiO2").value,
+        hfFiO2Percent: document.getElementById("hfFiO2Percent").value,
         hfTime: document.getElementById("hfTime").value,
         selectedCylinder
       };
@@ -1380,30 +1271,18 @@
         const data = JSON.parse(raw);
 
         [
-          "ventMinuteVolume","ventExtra","ventFiO2","ventTime",
+          "ventMinuteVolume","ventExtra","ventFiO2Percent","ventTime",
           "spontFlow","spontTime",
-          "cpapMinuteVolume","cpapLeak","cpapFiO2","cpapTime",
-          "hfFlow","hfFiO2","hfTime"
+          "cpapMinuteVolume","cpapLeak","cpapFiO2Percent","cpapTime",
+          "hfFlow","hfFiO2Percent","hfTime"
         ].forEach(id => {
-          if (data[id] === undefined || !document.getElementById(id)) return;
-
-          let value = data[id];
-          if (["ventFiO2", "cpapFiO2", "hfFiO2"].includes(id)) {
-            const numericValue = parseFloat(value);
-            if (!Number.isNaN(numericValue) && numericValue <= 1) {
-              value = String(Math.round(numericValue * 100));
-            }
+          if (data[id] !== undefined && document.getElementById(id)) {
+            document.getElementById(id).value = data[id];
           }
-
-          document.getElementById(id).value = value;
         });
 
         if (data.selectedCylinder){
           Object.assign(selectedCylinder, data.selectedCylinder);
-        }
-
-        if (data.activeTab && document.querySelector(`.tab-btn[data-tab="${data.activeTab}"]`)) {
-          setActiveTab(data.activeTab);
         }
       } catch(e){}
     }
@@ -1412,10 +1291,10 @@
       const stamp = fmtDateTime();
       const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab || "vent";
       const summaries = {
-        vent: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Ventilated\nOxygen Required: ${document.getElementById("ventResult").textContent}\nCylinder: ${document.getElementById("ventCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("ventCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("ventCylinderDuration").textContent}`,
-        spont: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Spontaneously Breathing\nOxygen Required: ${document.getElementById("spontResult").textContent}\nCylinder: ${document.getElementById("spontCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("spontCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("spontCylinderDuration").textContent}`,
-        cpap: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: CPAP\nOxygen Required: ${document.getElementById("cpapResult").textContent}\nCylinder: ${document.getElementById("cpapCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("cpapCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("cpapCylinderDuration").textContent}`,
-        hf: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: High Flow\nOxygen Required: ${document.getElementById("hfResult").textContent}\nCylinder: ${document.getElementById("hfCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("hfCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("hfCylinderDuration").textContent}`
+        vent: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Ventilated\nFiO₂: ${document.getElementById("ventFiO2Percent").value}%\nOxygen Required: ${document.getElementById("ventResult").textContent}\nCylinder: ${document.getElementById("ventCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("ventCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("ventCylinderDuration").textContent}`,
+        spont: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: Spontaneously Breathing\nFlow: ${document.getElementById("spontFlow").value} L/min\nOxygen Required: ${document.getElementById("spontResult").textContent}\nCylinder: ${document.getElementById("spontCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("spontCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("spontCylinderDuration").textContent}`,
+        cpap: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: CPAP\nFiO₂: ${document.getElementById("cpapFiO2Percent").value}%\nOxygen Required: ${document.getElementById("cpapResult").textContent}\nCylinder: ${document.getElementById("cpapCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("cpapCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("cpapCylinderDuration").textContent}`,
+        hf: `ARCC KSS Oxygen Calculator\nDate/Time: ${stamp}\nMode: High Flow\nFiO₂: ${document.getElementById("hfFiO2Percent").value}%\nOxygen Required: ${document.getElementById("hfResult").textContent}\nCylinder: ${document.getElementById("hfCylinderName").textContent}\nApprox Cylinders Needed: ${document.getElementById("hfCylinderNeeded").textContent}\nApprox Duration/Cylinder: ${document.getElementById("hfCylinderDuration").textContent}`
       };
 
       try{
@@ -1430,8 +1309,11 @@
     });
 
     populateFlowDropdown();
-    populateFiO2Dropdowns();
+    populateFiO2Dropdown("ventFiO2Percent", 100);
+    populateFiO2Dropdown("cpapFiO2Percent", 100);
+    populateFiO2Dropdown("hfFiO2Percent", 100);
     setupVersionCheck();
+    ["vent","spont","cpap","hf"].forEach(renderCylinders);
     loadState();
     ["vent","spont","cpap","hf"].forEach(renderCylinders);
 

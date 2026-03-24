@@ -1,9 +1,15 @@
-## 1.4.6 - 2026-03-24
-- Cleaned up startup rendering by removing the duplicate cylinder redraw after load.
-- Changed FiO₂ inputs for Ventilated, CPAP, and High Flow from decimal fractions to dropdown percentages (21% to 100%).
-- Kept calculations unchanged internally by converting the selected percentage to a fraction for the formula.
-- Improved small-screen cylinder card responsiveness with a more readable 2-column layout on very narrow mobile widths.
-- Updated app version and service worker cache name to keep GitHub Pages/PWA refresh behaviour in sync.
+## [1.4.6] - 2026-03-23
+
+### Changed
+- FiO₂ inputs changed from decimal fraction to percentage selection
+- Ventilated, CPAP, and High Flow modes now use dropdowns from 21% to 100%
+
+### Improved
+- Copy Summary now includes the selected FiO₂ percentage where relevant
+- Formula display now reflects FiO₂ as a percentage input
+
+### Notes
+- FiO₂ percentages are converted internally to decimal values for calculation, so outputs remain aligned with the previous formula logic.
 ## [1.4.5] - 2026-03-23
 
 ### Changed
