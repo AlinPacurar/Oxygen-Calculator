@@ -328,7 +328,7 @@
 
     .cylinder-row{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:8px;
       margin-top:12px;
       align-items:end;
@@ -358,8 +358,8 @@
     }
 
     .cyl-graphic{
-      width:clamp(16px, 4.6vw, 30px);
-      height:clamp(58px, 13vw, 94px);
+      width:clamp(14px, 4vw, 26px);
+      height:clamp(54px, 12vw, 88px);
       display:flex;
       align-items:flex-end;
       justify-content:center;
@@ -368,7 +368,7 @@
     }
 
     .cyl-body{
-      width:clamp(8px, 2.1vw, 14px);
+      width:clamp(8px, 1.8vw, 13px);
       border-radius:16px 16px 12px 12px;
       position:relative;
       background:linear-gradient(180deg,#90a4b8 0%, #6f879d 45%, #4c6277 100%);
@@ -615,7 +615,7 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(3, minmax(70px, 1fr));
+        grid-template-columns:repeat(4, minmax(60px, 1fr));
         gap:6px;
       }
 
@@ -624,12 +624,12 @@
       }
 
       .cyl-graphic{
-        width:18px;
-        height:62px;
+        width:16px;
+        height:58px;
       }
 
       .cyl-body{
-        width:9px;
+        width:8px;
       }
 
       .cyl-name{
@@ -681,21 +681,21 @@
       }
 
       .cylinder-row{
-        grid-template-columns:repeat(3, minmax(64px, 1fr));
-        gap:5px;
+        grid-template-columns:repeat(4, minmax(56px, 1fr));
+        gap:4px;
       }
 
       .cyl-card{
-        padding:7px 3px 6px;
+        padding:7px 2px 6px;
       }
 
       .cyl-graphic{
-        width:16px;
-        height:56px;
+        width:14px;
+        height:52px;
       }
 
       .cyl-body{
-        width:8px;
+        width:7px;
       }
 
       .cyl-name{
@@ -1100,7 +1100,7 @@
     </div>
 
     <footer>
-      <div><strong>Version:</strong> 1.4.3.1</div>
+      <div><strong>Version:</strong> 1.4.4</div>
       <div><strong>Last Validated:</strong> 2026-03-23</div>
       <div>© 2026 ARCC KSS · Created by Alin Pacurar · All rights reserved</div>
     </footer>
@@ -1118,13 +1118,14 @@
   </div>
 
   <script>
-    const APP_VERSION = "1.4.3";
+    const APP_VERSION = "1.4";
     const VERSION_KEY = "arcc-kss-version";
 
     const cylinders = [
       { id: "zx", name: "ZX", volume: 3040, height: 74 },
-      { id: "e",  name: "E",  volume: 680,  height: 40 },
-      { id: "cd", name: "CD", volume: 460,  height: 20 }
+      { id: "hx", name: "HX", volume: 2300, height: 66 },
+      { id: "e",  name: "E",  volume: 680,  height: 52 },
+      { id: "cd", name: "CD", volume: 460,  height: 40 }
     ];
 
     const selectedCylinder = {
